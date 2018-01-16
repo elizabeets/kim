@@ -2,6 +2,7 @@
 
 namespace App;
 
+//region Sage Theme Filters
 /**
  * Add <body> classes
  */
@@ -68,3 +69,23 @@ add_filter('comments_template', function ($comments_template) {
     );
     return template_path(locate_template(["views/{$comments_template}", $comments_template]) ?: $comments_template);
 });
+//endregion
+
+//region Kim Heyman Theme Filters
+/**
+ * Add ACF Options Page
+ */
+if ( function_exists( 'acf_add_options_page' ) ) {
+
+    acf_add_options_page( [
+        'position' => '2.0',
+        'icon_url' => 'dashicons-admin-generic',
+        'page_title' => 'Theme General Settings',
+        'menu_title' => 'Theme Settings',
+        'menu_slug' => 'theme-general-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false
+    ] );
+
+}
+//endregion

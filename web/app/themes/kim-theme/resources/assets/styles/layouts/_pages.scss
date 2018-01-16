@@ -1,0 +1,145 @@
+body {
+  height: 100vh;
+  background: {
+    image: url("/app/uploads/2018/01/IMG_7984.jpg");
+    repeat: no-repeat;
+    size: cover;
+    position: left center;
+  }
+}
+
+.overlay {
+  z-index: 98;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: {
+    color: transparentize($white, 0.3);
+  }
+}
+
+.splash {
+  z-index: 100;
+  position: fixed;
+  top: 35%;
+  left: 25%;
+  right: auto;
+  bottom: auto;
+
+  h3 {
+    color: $black;
+    font: {
+      family: "mr-eaves-xl-modern", sans-serif;
+      weight: bold;
+      size: 2.5rem;
+    }
+  }
+
+  .site-logo {
+    max-width: 100%;
+
+    img {
+      max-width: 13rem;
+    }
+  }
+}
+
+.ease-effect {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icons {
+  .icon {
+    @extend .ease-effect;
+    $size: 35px;
+
+    width: $size;
+    height: $size;
+    border: {
+      radius: $size/2;
+    }
+    background: {
+      color: $black;
+    }
+
+    border: {
+      color: $gray-300;
+      width: 1px;
+      style: solid;
+    }
+
+    i,
+    a {
+      @extend .ease-effect;
+
+      color: $gray-300;
+      line-height: $size;
+    }
+
+    &:hover {
+      background: {
+        color: $gray-300;
+      }
+      border: {
+        color: $black;
+      }
+
+      i,
+      a {
+        color: $black;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  body {
+    background: {
+      position: 37% center;
+    }
+  }
+
+  .social-icons {
+    .icon {
+      border: {
+        width: 0;
+      }
+
+      i {
+        font: {
+          size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .site-logo {
+      margin: 2rem auto 0;
+      max-width: 5rem;
+    }
+
+    .info {
+      position: absolute;
+      bottom: 7.5rem;
+
+      h3 {
+        font: {
+          size: 2rem;
+        }
+      }
+    }
+  }
+}

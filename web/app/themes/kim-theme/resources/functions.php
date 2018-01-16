@@ -7,6 +7,7 @@
 use Roots\Sage\Config;
 use Roots\Sage\Container;
 
+//region Sage Theme Functions
 /**
  * Helper function for prettying up errors
  * @param string $message
@@ -83,10 +84,45 @@ array_map(
     array_fill(0, 4, 'dirname')
 );
 Container::getInstance()
-    ->bindIf('config', function () {
-        return new Config([
-            'assets' => require dirname(__DIR__).'/config/assets.php',
-            'theme' => require dirname(__DIR__).'/config/theme.php',
-            'view' => require dirname(__DIR__).'/config/view.php',
-        ]);
-    }, true);
+         ->bindIf('config', function () {
+             return new Config([
+                 'assets' => require dirname(__DIR__).'/config/assets.php',
+                 'theme' => require dirname(__DIR__).'/config/theme.php',
+                 'view' => require dirname(__DIR__).'/config/view.php',
+             ]);
+         }, true);
+//endregion
+
+//region WILCO Web Modifications
+/**
+ * Add SVG support to WordPress media
+ */
+add_filter( 'upload_mimes', 'add_custom_upload_mimes' );
+function add_custom_upload_mimes( $existing_mimes ) {
+    $existing_mimes['otf']  = 'application/x-font-otf';
+    $existing_mimes['woff'] = 'application/x-font-woff';
+    $existing_mimes['ttf']  = 'application/x-font-ttf';
+    $existing_mimes['svg']  = 'image/svg+xml';
+    $existing_mimes['eot']  = 'application/vnd.ms-fontobject';
+
+    return $existing_mimes;
+}
+
+/**
+ * Bootstrap Nav Walker
+ * */
+$wp_bootstrap_walker_filename = '/wp-bootstrap-navwalker.php';
+if ( ! file_exists( get_template_directory()
+                    . $wp_bootstrap_walker_filename )
+) {
+    // file does not exist... return an error.
+    return new WP_Error( 'wp-bootstrap-navwalker-missing',
+        __( 'It appears the ' . $wp_bootstrap_walker_filename
+            . ' file may be missing.',
+            'wp-bootstrap-navwalker' ) );
+} else {
+    // file exists... require it.
+    require_once get_template_directory() . $wp_bootstrap_walker_filename;
+}
+
+//endregion
