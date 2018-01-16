@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98d13907-2b27-4973-9d51-9f8bc94d3dbf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/config/application.php" afterPath="$PROJECT_DIR$/config/application.php" />
-      <change beforePath="$PROJECT_DIR$/config/environments/development.php" afterPath="$PROJECT_DIR$/config/environments/development.php" />
       <change beforePath="$PROJECT_DIR$/config/environments/production.php" afterPath="$PROJECT_DIR$/config/environments/production.php" />
-      <change beforePath="$PROJECT_DIR$/config/environments/staging.php" afterPath="$PROJECT_DIR$/config/environments/staging.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/app/admin.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/app/admin.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/app/filters.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/app/filters.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/app/helpers.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/app/helpers.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/assets/config.json" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/assets/config.json" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/assets/styles/layouts/_pages.scss" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/assets/styles/layouts/_pages.scss" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/functions.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/functions.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/layouts/app.blade.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/partials/content-page.blade.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/partials/content-page.blade.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/partials/head.blade.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/partials/head.blade.php" />
-      <change beforePath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/partials/header.blade.php" afterPath="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/partials/header.blade.php" />
+      <change beforePath="$PROJECT_DIR$/deploy/main-deploy-script.sh" afterPath="$PROJECT_DIR$/deploy/main-deploy-script.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,41 +17,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="template-coming-soon.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/template-coming-soon.blade.php">
+      <file leaf-file-name="production.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/environments/production.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="22" column="79" lean-forward="true" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
-              <folding>
-                <marker date="1516138576446" expanded="true" signature="58:71" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="83:92" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="242:263" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="274:296" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="529:567" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="585:623" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="715:753" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="760:769" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="863:885" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="961:984" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="1021:1044" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="1251:1263" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="1270:1280" ph="..." />
-                <marker date="1516138576446" expanded="true" signature="1295:1318" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_pages.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/app/themes/kim-theme/resources/assets/styles/layouts/_pages.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="801">
-              <caret line="135" column="17" lean-forward="false" selection-start-line="135" selection-start-column="17" selection-end-line="135" selection-end-column="17" />
-              <folding>
-                <element signature="e#1540#1674#0" expanded="false" />
-                <element signature="e#1552#1670#0" expanded="false" />
-                <element signature="e#1908#1965#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="408">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,9 +34,12 @@
       <find>animate</find>
       <find>ani</find>
       <find>$brand-primary</find>
+      <find>spot</find>
     </findStrings>
     <replaceStrings>
       <replace>$gray-300</replace>
+      <replace>ubuntu</replace>
+      <replace>kim</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -105,6 +65,8 @@
         <option value="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/partials/head.blade.php" />
         <option value="$PROJECT_DIR$/web/app/themes/kim-theme/resources/assets/styles/layouts/_pages.scss" />
         <option value="$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/template-coming-soon.blade.php" />
+        <option value="$PROJECT_DIR$/deploy/main-deploy-script.sh" />
+        <option value="$PROJECT_DIR$/config/environments/production.php" />
       </list>
     </option>
   </component>
@@ -165,79 +127,13 @@
             <path>
               <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
               <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
               <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="themes" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="themes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="kim-theme" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="themes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="kim-theme" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="themes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="kim-theme" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="themes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="kim-theme" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="themes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="kim-theme" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="kim-heyman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kim-heyman" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="themes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="kim-theme" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="partials" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="environments" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -296,13 +192,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11668000" />
+    <option name="totallyTimeSpent" value="12845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1178" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -374,14 +270,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/staging.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deploy/php.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -398,14 +286,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env.production">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/app/plugins/acf-code-field/js/input.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="696">
@@ -418,14 +298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -538,10 +410,10 @@
         <state relative-caret-position="240">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
-            <marker date="1516129758217" expanded="true" signature="89:104" ph="..." />
-            <marker date="1516129758217" expanded="true" signature="110:143" ph="..." />
-            <marker date="1516129758217" expanded="true" signature="191:225" ph="..." />
-            <marker date="1516129758217" expanded="true" signature="238:318" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="89:104" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="110:143" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="191:225" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="238:318" ph="..." />
           </folding>
         </state>
       </provider>
@@ -551,8 +423,8 @@
         <state relative-caret-position="96">
           <caret line="4" column="10" lean-forward="true" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
           <folding>
-            <marker date="1516129770873" expanded="true" signature="83:96" ph="..." />
-            <marker date="1516129770873" expanded="true" signature="169:288" ph="..." />
+            <marker date="1516141879731" expanded="true" signature="83:96" ph="..." />
+            <marker date="1516141879731" expanded="true" signature="169:288" ph="..." />
           </folding>
         </state>
       </provider>
@@ -570,9 +442,9 @@
         <state relative-caret-position="168">
           <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
           <folding>
-            <marker date="1516131405131" expanded="true" signature="184:193" ph="..." />
-            <marker date="1516131405131" expanded="true" signature="201:237" ph="..." />
-            <marker date="1516131405131" expanded="true" signature="246:284" ph="..." />
+            <marker date="1516141879732" expanded="true" signature="184:193" ph="..." />
+            <marker date="1516141879732" expanded="true" signature="201:237" ph="..." />
+            <marker date="1516141879732" expanded="true" signature="246:284" ph="..." />
           </folding>
         </state>
       </provider>
@@ -582,13 +454,13 @@
         <state relative-caret-position="144">
           <caret line="6" column="53" lean-forward="false" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
           <folding>
-            <marker date="1516130934119" expanded="true" signature="4:42" ph="..." />
-            <marker date="1516130934119" expanded="true" signature="50:88" ph="..." />
-            <marker date="1516130934119" expanded="true" signature="160:191" ph="..." />
-            <marker date="1516130934119" expanded="true" signature="198:207" ph="..." />
-            <marker date="1516130934119" expanded="true" signature="281:303" ph="..." />
-            <marker date="1516130934119" expanded="true" signature="369:392" ph="..." />
-            <marker date="1516130934119" expanded="true" signature="426:449" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="4:42" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="50:88" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="160:191" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="198:207" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="281:303" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="369:392" ph="..." />
+            <marker date="1516141879733" expanded="true" signature="426:449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -653,20 +525,83 @@
         <state relative-caret-position="600">
           <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
           <folding>
-            <marker date="1516130316998" expanded="true" signature="848:869" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="881:896" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="909:938" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="945:981" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="988:1026" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1070:1093" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1104:1121" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1219:1228" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1263:1286" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1297:1314" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1321:1332" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1338:1376" ph="..." />
-            <marker date="1516130316998" expanded="true" signature="1383:1423" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="848:869" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="881:896" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="909:938" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="945:981" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="988:1026" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1070:1093" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1104:1121" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1219:1228" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1263:1286" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1297:1314" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1321:1332" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1338:1376" ph="..." />
+            <marker date="1516141879730" expanded="true" signature="1383:1423" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.production">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy/main-deploy-script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/template-coming-soon.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="22" column="79" lean-forward="false" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
+          <folding>
+            <marker date="1516141879734" expanded="true" signature="58:71" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="83:92" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="242:263" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="274:296" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="529:567" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="585:623" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="715:753" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="760:769" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="863:885" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="961:984" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="1021:1044" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="1251:1263" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="1270:1280" ph="..." />
+            <marker date="1516141879734" expanded="true" signature="1295:1318" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments/development.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments/staging.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -682,26 +617,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/themes/kim-theme/resources/views/template-coming-soon.blade.php">
+    <entry file="file://$PROJECT_DIR$/config/environments/production.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="22" column="79" lean-forward="true" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
-          <folding>
-            <marker date="1516138576446" expanded="true" signature="58:71" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="83:92" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="242:263" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="274:296" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="529:567" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="585:623" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="715:753" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="760:769" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="863:885" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="961:984" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="1021:1044" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="1251:1263" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="1270:1280" ph="..." />
-            <marker date="1516138576446" expanded="true" signature="1295:1318" ph="..." />
-          </folding>
+        <state relative-caret-position="408">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
