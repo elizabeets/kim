@@ -28,7 +28,8 @@
 /sitemap.xml.gz
 
 *.log
-/.idea/
+/.idea
 /web/app/uploads/mc4wp-debug-log.php
 /web/mysql-search-and-replace/
 /web/snr/
+/.idea/workspace.xml
