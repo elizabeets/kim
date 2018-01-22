@@ -1,0 +1,3 @@
+Sitemap: https://kimheyman.com/sitemap_index.xml
+
+User-agent: *
