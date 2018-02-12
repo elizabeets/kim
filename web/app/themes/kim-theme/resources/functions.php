@@ -10,39 +10,44 @@ use Roots\Sage\Container;
 //region Sage Theme Functions
 /**
  * Helper function for prettying up errors
+ *
  * @param string $message
  * @param string $subtitle
  * @param string $title
  */
-$sage_error = function ($message, $subtitle = '', $title = '') {
-    $title = $title ?: __('Sage &rsaquo; Error', 'sage');
+$sage_error = function ( $message, $subtitle = '', $title = '' ) {
+    $title  = $title ?: __( 'Sage &rsaquo; Error', 'sage' );
     $footer = '<a href="https://roots.io/sage/docs/">roots.io/sage/docs/</a>';
-    $message = "<h1>{$title}<br><small>{$subtitle}</small></h1><p>{$message}</p><p>{$footer}</p>";
-    wp_die($message, $title);
+    $message
+            = "<h1>{$title}<br><small>{$subtitle}</small></h1><p>{$message}</p><p>{$footer}</p>";
+    wp_die( $message, $title );
 };
 
 /**
  * Ensure compatible version of PHP is used
  */
-if (version_compare('7', phpversion(), '>=')) {
-    $sage_error(__('You must be using PHP 7 or greater.', 'sage'), __('Invalid PHP version', 'sage'));
+if ( version_compare( '7', phpversion(), '>=' ) ) {
+    $sage_error( __( 'You must be using PHP 7 or greater.', 'sage' ),
+        __( 'Invalid PHP version', 'sage' ) );
 }
 
 /**
  * Ensure compatible version of WordPress is used
  */
-if (version_compare('4.7.0', get_bloginfo('version'), '>=')) {
-    $sage_error(__('You must be using WordPress 4.7.0 or greater.', 'sage'), __('Invalid WordPress version', 'sage'));
+if ( version_compare( '4.7.0', get_bloginfo( 'version' ), '>=' ) ) {
+    $sage_error( __( 'You must be using WordPress 4.7.0 or greater.', 'sage' ),
+        __( 'Invalid WordPress version', 'sage' ) );
 }
 
 /**
  * Ensure dependencies are loaded
  */
-if (!class_exists('Roots\\Sage\\Container')) {
-    if (!file_exists($composer = __DIR__.'/../vendor/autoload.php')) {
+if ( ! class_exists( 'Roots\\Sage\\Container' ) ) {
+    if ( ! file_exists( $composer = __DIR__ . '/../vendor/autoload.php' ) ) {
         $sage_error(
-            __('You must run <code>composer install</code> from the Sage directory.', 'sage'),
-            __('Autoloader not found.', 'sage')
+            __( 'You must run <code>composer install</code> from the Sage directory.',
+                'sage' ),
+            __( 'Autoloader not found.', 'sage' )
         );
     }
     require_once $composer;
@@ -54,12 +59,16 @@ if (!class_exists('Roots\\Sage\\Container')) {
  * The mapped array determines the code library included in your theme.
  * Add or remove files to the array as needed. Supports child theme overrides.
  */
-array_map(function ($file) use ($sage_error) {
+array_map( function ( $file ) use ( $sage_error ) {
     $file = "../app/{$file}.php";
-    if (!locate_template($file, true, true)) {
-        $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
+    if ( ! locate_template( $file, true, true ) ) {
+        $sage_error( sprintf( __( 'Error locating <code>%s</code> for inclusion.',
+            'sage' ),
+            $file ),
+            'File not found' );
     }
-}, ['helpers', 'setup', 'filters', 'admin']);
+},
+    [ 'helpers', 'setup', 'filters', 'admin', 'woocommerce' ] );
 
 /**
  * Here's what's happening with these hooks:
@@ -80,17 +89,27 @@ array_map(function ($file) use ($sage_error) {
  */
 array_map(
     'add_filter',
-    ['theme_file_path', 'theme_file_uri', 'parent_theme_file_path', 'parent_theme_file_uri'],
-    array_fill(0, 4, 'dirname')
+    [
+        'theme_file_path',
+        'theme_file_uri',
+        'parent_theme_file_path',
+        'parent_theme_file_uri',
+    ],
+    array_fill( 0, 4, 'dirname' )
 );
 Container::getInstance()
-         ->bindIf('config', function () {
-             return new Config([
-                 'assets' => require dirname(__DIR__).'/config/assets.php',
-                 'theme' => require dirname(__DIR__).'/config/theme.php',
-                 'view' => require dirname(__DIR__).'/config/view.php',
-             ]);
-         }, true);
+         ->bindIf( 'config',
+             function () {
+                 return new Config( [
+                     'assets' => require dirname( __DIR__ )
+                                         . '/config/assets.php',
+                     'theme'  => require dirname( __DIR__ )
+                                         . '/config/theme.php',
+                     'view'   => require dirname( __DIR__ )
+                                         . '/config/view.php',
+                 ] );
+             },
+             true );
 //endregion
 
 //region WILCO Web Modifications
@@ -123,6 +142,178 @@ if ( ! file_exists( get_template_directory()
 } else {
     // file exists... require it.
     require_once get_template_directory() . $wp_bootstrap_walker_filename;
+}
+
+/**
+ * Fix menu class for current active CPT item
+ *
+ * @param array $classes
+ * @param bool $menu_item
+ *
+ * @return array
+ */
+add_filter( 'nav_menu_css_class', 'custom_active_item_classes', 10, 2 );
+function custom_active_item_classes( $classes = array(), $menu_item = false ) {
+    global $post;
+
+    // Get post ID, if nothing found set to NULL
+    $id = ( isset( $post->ID ) ? get_the_ID() : null );
+
+    // Checking if post ID exist...
+    if ( isset( $id ) ) {
+        $classes[] = ( $menu_item->url == get_post_type_archive_link( $post->post_type ) ) ? 'current-menu-item active' : '';
+    }
+
+    return $classes;
+}
+//endregion
+
+//region WooCommerce Modifications
+/**
+ * WooCommerce: Add Extra Fields to Shop Registration
+ */
+add_action( 'woocommerce_register_form_start', 'wooc_extra_register_fields' );
+function wooc_extra_register_fields() { ?>
+
+    <p class="form-row form-row-first">
+        <label for="reg_billing_first_name">
+            <?php _e( 'First name', 'woocommerce' ); ?>
+            <span class="required">*</span>
+        </label>
+        <input type="text" class="input-text" name="first_name" id="reg_billing_first_name"
+               value="<?php if ( ! empty( $_POST['first_name'] ) ) {
+                   esc_attr_e( $_POST['first_name'] );
+               } ?>"/>
+    </p>
+    <p class="form-row form-row-last">
+        <label for="reg_billing_last_name">
+            <?php _e( 'Last name', 'woocommerce' ); ?>
+            <span class="required">*</span>
+        </label>
+        <input type="text" class="input-text" name="last_name" id="reg_billing_last_name"
+               value="<?php if ( ! empty( $_POST['last_name'] ) ) {
+                   esc_attr_e( $_POST['last_name'] );
+               } ?>"/>
+    </p>
+    <div class="clear"></div>
+    <?php
+}
+
+/**
+ * WooCommerce: Force reset Anti-Spam trap (Safari Auto-fill fix)
+ */
+add_action( 'woocommerce_register_post', 'reset_anti_spam_trap', 10, 3 );
+function reset_anti_spam_trap() {
+    if ( ! empty( $_POST['email_2'] ) ) {
+        unset( $_POST['email_2'] );
+    }
+}
+
+/**
+ * WooCommerce: register fields Validating.
+ */
+add_action( 'woocommerce_register_post', 'wooc_validate_extra_register_fields', 10, 4 );
+function wooc_validate_extra_register_fields( $username, $email, $validation_errors ) {
+    if ( isset( $POST['first_name'] ) && empty( $_POST['first_name'] ) ) {
+        $validation_errors->add( 'billing_first_name_error', _( '<strong>Error</strong>: First name is required!', 'woocommerce' ) );
+    }
+    if ( isset( $POST['last_name'] ) && empty( $_POST['last_name'] ) ) {
+        $validation_errors->add( 'billing_last_name_error', _( '<strong>Error</strong>: Last name is required!.', 'woocommerce' ) );
+    }
+
+    return $validation_errors;
+}
+
+/**
+ * WooCommerce: Below code save extra fields.
+ */
+add_action( 'woocommerce_created_customer', 'wooc_save_extra_register_fields' );
+function wooc_save_extra_register_fields( $customer_id ) {
+    if ( isset( $_POST['first_name'] ) ) {
+        //First name field which is by default
+        update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['first_name'] ) );
+        // First name field which is used in WooCommerce
+        update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['first_name'] ) );
+    }
+    if ( isset( $_POST['last_name'] ) ) {
+        // Last name field which is by default
+        update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['last_name'] ) );
+        // Last name field which is used in WooCommerce
+        update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['last_name'] ) );
+    }
+}
+
+
+/**
+ * WooCommerce: Show Quantity next to 'add' button in product loop
+ */
+/*add_filter( 'woocommerce_loop_add_to_cart_link', 'quantity_inputs_for_woocommerce_loop_add_to_cart_link', 10, 2 );
+function quantity_inputs_for_woocommerce_loop_add_to_cart_link( $html, $product ) {
+    $product_id    = $product->get_id();
+    $cart_quantity = WC()->cart->get_cart_item_quantities();
+
+    if ( array_key_exists( $product_id, $cart_quantity ) ) {
+        $cart_quantity = (string) $cart_quantity[ $product_id ];
+    } else {
+        $cart_quantity = '1';
+    }
+
+    if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
+        $html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data">';
+        $html .= woocommerce_quantity_input( [
+            'input_value' => $cart_quantity
+        ], $product, false );
+        $html .= '<button type="submit" class="button alt d-inline-block mt-0">' . esc_html( $product->add_to_cart_text() ) . '</button>';
+        $html .= '</form>';
+    }
+
+    return $html;
+}*/
+
+/**
+ * WooCommerce: Add 'Continue Shopping' button to a Product Page
+ */
+add_action( 'woocommerce_after_add_to_cart_button', 'wc_shop_return_back_button', 20 );
+function wc_shop_return_back_button() {
+    echo '<a class="btn btn-outline-primary continue-shopping" href="' . esc_url( wc_get_page_permalink( 'shop' ) ) . '">Continue Shopping</a>';
+}
+
+/**
+ * WooCommerce: Reduce the password strength requirement
+ *
+ * Strength Settings:
+ * 3 = Strong (default)
+ * 2 = Medium
+ * 1 = Weak
+ * 0 = Very Weak / Anything
+ */
+add_filter( 'woocommerce_min_password_strength', 'reduce_woocommerce_min_strength_requirement' );
+function reduce_woocommerce_min_strength_requirement( $strength ) {
+    return 1;
+}
+
+/**
+ * WooCommerce: Disable 'Ship to Different Address' by default
+ */
+add_filter( 'woocommerce_ship_to_different_address_checked', '__return_false' );
+
+/**
+ * WooCommerce: Override menu that appear in My Account Page
+ */
+add_filter( 'woocommerce_account_menu_items', 'wc_change_myaccount_menu' );
+function wc_change_myaccount_menu() {
+    $myorder = array(
+//        'my-custom-endpoint' => __( 'My Stuff', 'woocommerce' ),
+        'dashboard' => __( 'Dashboard', 'woocommerce' ),
+'orders'          => __( 'My Orders', 'woocommerce' ),
+'subscriptions'   => __( 'My Subscriptions', 'woocommerce' ),
+'edit-address'    => __( 'My Addresses', 'woocommerce' ),
+'payment-methods' => __( 'My Payment Methods', 'woocommerce' ),
+'edit-account'    => __( 'My User Details', 'woocommerce' ),
+        'customer-logout' => __( 'Logout', 'woocommerce' ),
+    );
+
+    return $myorder;
 }
 
 //endregion

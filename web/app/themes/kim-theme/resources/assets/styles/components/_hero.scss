@@ -1,0 +1,44 @@
+section.hero {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  .hero-slider {
+    $hero-height: 100vh;
+
+    position: relative;
+    width: 100%;
+    height: $hero-height;
+    overflow: hidden;
+    z-index: 100;
+
+    .hero-slide {
+      width: 100%;
+      height: $hero-height;
+      background: {
+        repeat: no-repeat;
+        size: cover;
+        position: center center;
+      }
+    }
+
+    &.slick-dotted {
+      margin: 0;
+    }
+
+    .slick-dots {
+      bottom: 25px;
+
+      li {
+        button {
+          &::before {
+            color: $brand-primary;
+            font: {
+              size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

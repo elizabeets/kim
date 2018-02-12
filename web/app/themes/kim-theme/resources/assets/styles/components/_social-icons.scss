@@ -1,0 +1,59 @@
+.social-icons {
+  .icon {
+    @extend .ease-effect;
+    $size: 35px;
+
+    width: $size;
+    height: $size;
+    border: {
+      radius: $size/2;
+    }
+    background: {
+      color: $black;
+    }
+
+    border: {
+      color: $gray-300;
+      width: 1px;
+      style: solid;
+    }
+
+    i,
+    a {
+      @extend .ease-effect;
+
+      color: $gray-300;
+      line-height: $size;
+    }
+
+    &:hover {
+      background: {
+        color: $gray-300;
+      }
+      border: {
+        color: $black;
+      }
+
+      i,
+      a {
+        color: $black;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .social-icons {
+    .icon {
+      border: {
+        width: 0;
+      }
+
+      i {
+        font: {
+          size: 1.5rem;
+        }
+      }
+    }
+  }
+}

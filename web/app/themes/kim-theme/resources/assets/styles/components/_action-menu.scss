@@ -1,0 +1,28 @@
+.action-menu {
+  @extend .list-unstyled, .ease-effect;
+
+  z-index: 999;
+  position: fixed;
+  top: calc(50% - 100px);
+  right: 0;
+  padding: 1rem 0.5rem;
+  background: {
+    color: transparentize($white, 0.5);
+  }
+
+  a {
+    @extend .ease-effect;
+
+    color: $black;
+
+    &:hover {
+      color: lighten($black, 50%);
+    }
+  }
+
+  &:hover {
+    background: {
+      color: transparentize($white, 0.2);
+    }
+  }
+}

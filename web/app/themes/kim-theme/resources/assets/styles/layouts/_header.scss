@@ -1,7 +1,72 @@
-.banner .nav li {
-  @extend .nav-item;
-}
+header.banner {
+  .nav {
+    li {
+      @extend .nav-item;
+    }
 
-.banner .nav a {
-  @extend .nav-link;
+    a {
+      @extend .nav-link;
+    }
+  }
+
+  .brand {
+    .site-logo {
+      width: 100%;
+      max-width: 10rem;
+    }
+  }
+
+  &.float {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    a.brand {
+      display: inline-block;
+      float: left;
+    }
+
+    nav.nav-primary {
+      display: inline-block;
+
+      .nav {
+        width: 30%;
+
+        li {
+          @extend .d-block;
+        }
+
+        a {
+          @extend .nav-link;
+
+          color: $black;
+        }
+      }
+    }
+
+    &.on {
+      padding: 1rem 2rem;
+      width: 100%;
+      background: {
+        color: $white;
+      }
+
+      a.brand {
+        float: none;
+
+        .site-logo {
+          @extend .ease-effect;
+
+          max-width: 5rem;
+        }
+      }
+
+      nav.nav-primary {
+        .nav {
+          width: 100%;
+        }
+      }
+    }
+  }
 }

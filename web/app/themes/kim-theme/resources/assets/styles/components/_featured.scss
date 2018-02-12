@@ -1,0 +1,71 @@
+section.featured {
+  article {
+    @extend .ease-effect;
+
+    position: relative;
+    height: 100rem;
+    background: {
+      repeat: no-repeat;
+      size: cover;
+      position: center center;
+    }
+
+    .overlay {
+      @extend .ease-effect;
+
+      z-index: 80;
+      opacity: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: {
+        color: transparentize($black, 0.3);
+      }
+    }
+
+    header {
+      @extend .ease-effect;
+
+      z-index: 81;
+      opacity: 1;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: -25px 0;
+      height: 85px;
+      transform: translateY(-20px);
+
+      h2 {
+        @extend .ease-effect;
+
+        margin: 0;
+        font: {
+          family: $secondary-font;
+          size: 4rem;
+          weight: 200;
+        }
+
+        &:hover {
+          text: {
+            decoration: none;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .overlay {
+        opacity: 0;
+      }
+
+      header {
+        opacity: 0;
+        transform: translateY(0);
+      }
+    }
+  }
+}

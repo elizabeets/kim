@@ -14,9 +14,8 @@
 @if(get_field('body_scripts', 'options'))
   {!! get_field('body_scripts', 'options') !!}
 @endif
-<div class="overlay"></div>
 @php(do_action('get_header'))
-@include('partials.header')
+@include('partials.header-float')
 <div class="wrap" role="document">
   <div class="content">
     <main class="main">
