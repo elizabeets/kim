@@ -15,7 +15,7 @@
   {!! get_field('body_scripts', 'options') !!}
 @endif
 @php(do_action('get_header'))
-@include('partials.header-float')
+@include('partials.header')
 <div class="wrap" role="document">
   <div class="content">
     <main class="main">

@@ -1,4 +1,19 @@
 header.banner {
+  padding: 1rem 0;
+
+  .brand {
+    .site-logo {
+      @extend .ease-effect;
+
+      width: 100%;
+      max-width: 5rem;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
   .nav {
     li {
       @extend .nav-item;
@@ -6,13 +21,18 @@ header.banner {
 
     a {
       @extend .nav-link;
-    }
-  }
 
-  .brand {
-    .site-logo {
-      width: 100%;
-      max-width: 10rem;
+      padding: 1.3rem;
+      font: {
+        weight: bold;
+      }
+
+      &:hover {
+        color: $white;
+        background: {
+          color: $brand-primary;
+        }
+      }
     }
   }
 

@@ -1,28 +1,39 @@
 .action-menu {
-  @extend .list-unstyled, .ease-effect;
+  @extend .list-unstyled, .ease-effect, .list-inline;
 
-  z-index: 999;
-  position: fixed;
-  top: calc(50% - 100px);
-  right: 0;
-  padding: 1rem 0.5rem;
-  background: {
-    color: transparentize($white, 0.5);
-  }
-
-  a {
-    @extend .ease-effect;
-
-    color: $black;
+  &.float {
+    z-index: 999;
+    position: fixed;
+    top: calc(50% - 100px);
+    right: 0;
+    padding: 1rem 0.5rem;
+    background: {
+      color: transparentize($white, 0.5);
+    }
 
     &:hover {
-      color: lighten($black, 50%);
+      background: {
+        color: transparentize($white, 0.2);
+      }
     }
   }
 
-  &:hover {
-    background: {
-      color: transparentize($white, 0.2);
+  li {
+    @extend .list-inline-item;
+
+    padding: 1.3rem 0.5rem;
+
+    a {
+      color: $brand-primary;
+    }
+
+    &:hover {
+      a {
+        color: $white;
+        background: {
+          color: $brand-primary;
+        }
+      }
     }
   }
 }

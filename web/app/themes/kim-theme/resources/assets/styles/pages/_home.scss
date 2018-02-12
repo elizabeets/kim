@@ -1,0 +1,9 @@
+body.template-home {
+  // smth
+}
+
+@include media-breakpoint-down(md) {
+  body.template-home {
+    // smth
+  }
+}

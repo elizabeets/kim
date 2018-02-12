@@ -15,10 +15,5 @@
         </form>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        @include('partials.common.social-icons')
-      </div>
-    </div>
   </div>
 </section>

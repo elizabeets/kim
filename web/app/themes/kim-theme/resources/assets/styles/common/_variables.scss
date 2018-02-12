@@ -1,22 +1,58 @@
 // Fonts
 $fa-font-path: '~font-awesome/fonts';
-$heading-font: 'Bahiana', sans-serif;
-$paragraph-font: 'Arial', serif;
-$system-font: 'Montserrat', sans-serif;
-$secondary-font: 'Arial', cursive;
+$heading-font: 'Oswald', sans-serif;
+$paragraph-font: 'Nunito', serif;
+$system-font: 'Nunito', sans-serif;
+$secondary-font: 'Nunito', cursive;
 
 // Color Palette
-$gold: #ecdaa9;
-$white: #fff;
+$red: #f44729;
+$code-red: #df5e6d;
+$gum-pink: #e52564;
+$magenta: #c01f82;
+$pink: #ec407a;
+$pinkpule: #ab47bc;
+$purple: #5e1fc0;
+$light-purple: #8782ec;
+$indigo: #5c6bc0;
+$royal-blue: #1f31c0;
+$blue: #09f;
+$light-blue: #29b6f6;
+$spot-blue: #35c9fa;
+$cyan: #26c6da;
+$teal: #00c1ae;
+$green: #66bb6a;
+$light-green: #9ccc65;
+$lime: #d4e157;
+$yellow: #ffee58;
+$amber: #ffca28;
+$light-orange: #ffca28;
+$orange: #ffa726;
+$deep-orange: #ff7043;
+$brown: #8d6e63;
+$gray: #959fa7;
+$grey: $gray;
+$light-gray: #f7f7f9;
+$semi-light-gray: #d8dadd;
+$dark-gray: #666;
+$darker-gray: #303133;
+$blue-gray: #78909c;
+$dark-blue-gray: #39516a;
+$navy: #304249;
+$darker-blue-gray: #182635;
+$dark-navy: #1a1f2a;
+$darkest-gray: #1c1e24;
+$almost-black: #191919;
 $black: #000;
-$dark-gray: #1e1e1e;
-$light-gray: #ccc;
+$white: #fff;
 
 // Theme Coloring
-$brand-primary: $gold;
-$main-background: $black;
-$secondary-background: $dark-gray;
+$brand-primary: $navy;
+$main-background: $white;
+$secondary-background: $navy;
 
-$heading-color: $white;
-$paragraph-color: $white;
+$heading-color: $almost-black;
+$paragraph-color: $almost-black;
+
+$section-padding: 3rem 0;
 

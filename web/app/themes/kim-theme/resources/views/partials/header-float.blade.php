@@ -31,4 +31,4 @@
 </header>
 <!-- // Header -->
 
-@include('partials.action-menu')
+@include('partials.common.action-menu-float')

@@ -1,0 +1,18 @@
+footer.layout {
+  background: {
+    color: $brand-primary;
+  }
+
+  ul.nav {
+    li.menu-item {
+      padding: 1rem;
+
+      a {
+        color: $white;
+        font: {
+          size: 0.9rem;
+        }
+      }
+    }
+  }
+}

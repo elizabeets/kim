@@ -1,7 +1,12 @@
-<footer class="content-info">
+<footer class="layout">
   <div class="container-fluid">
-    <div class="row col-12 text-center">
-      {!! wp_nav_menu(['theme_location' => 'footer_navigation', 'menu_class' => 'nav text-center']) !!}
+    <div class="row justify-content-between">
+      <div class="col">
+        @include('partials.common.social-icons')
+      </div>
+      <div class="col">
+        {!! wp_nav_menu(['theme_location' => 'footer_navigation', 'menu_class' => 'nav text-right float-right']) !!}
+      </div>
     </div>
   </div>
 </footer>

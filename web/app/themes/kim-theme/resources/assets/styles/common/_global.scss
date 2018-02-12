@@ -1,0 +1,181 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+::selection {
+  background: $brand-primary; /* WebKit/Blink Browsers */
+  color: $white;
+}
+
+::-moz-selection {
+  background: $brand-primary; /* Gecko Browsers */
+  color: $white;
+}
+
+:root {
+  font: {
+    size: 18px;
+  }
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  background: {
+    color: $main-background;
+  }
+  font: {
+    family: $paragraph-font;
+    size: 1rem;
+    weight: 200;
+  }
+  text: {
+    rendering: optimizeLegibility;
+  }
+}
+
+p {
+  color: $paragraph-color;
+  font: {
+    family: $paragraph-font;
+    size: 1rem;
+    weight: 200;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $brand-primary;
+  font: {
+    weight: bold;
+    family: $heading-font;
+  }
+  text: {
+    transform: uppercase;
+  }
+}
+
+h1 {
+  margin: 0;
+  font: {
+    size: 2.3rem;
+  }
+}
+
+h2 {
+  margin: 20px 0 10px;
+  font: {
+    size: 2.1rem;
+  }
+}
+
+h3 {
+  margin: 40px 0 10px;
+  font: {
+    size: 1.9rem;
+  }
+}
+
+h4 {
+  margin: 40px 0 10px;
+  font: {
+    size: 1.7rem;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.btn-primary {
+  color: $main-background;
+}
+
+a {
+  color: $brand-primary;
+
+  &:hover {
+    color: darken($brand-primary, 10%);
+  }
+}
+
+.btn {
+  font: {
+    family: $system-font;
+  }
+}
+
+.btn-primary {
+  border: {
+    color: $brand-primary;
+  }
+  background: {
+    color: $brand-primary;
+  }
+
+  &:hover {
+    color: $white;
+    border: {
+      color: $brand-primary;
+    }
+    background: {
+      color: darken($brand-primary, 10%);
+    }
+  }
+}
+
+.btn-outline-primary {
+  color: $brand-primary;
+  border: {
+    color: $brand-primary;
+  }
+
+  &:hover {
+    color: $main-background;
+    background: {
+      color: $brand-primary;
+    }
+    border: {
+      color: $brand-primary;
+    }
+  }
+}
+
+#cookie-notice {
+  .button {
+    @extend .btn, .btn-primary, .btn-sm;
+  }
+
+  #cn-refuse-cookie {
+    @extend .btn, .btn-outline-primary, .btn-sm;
+  }
+}
+
+.modal {
+  .modal-dialog {
+    .modal-content {
+      background: {
+        color: $secondary-background;
+      }
+
+      hr {
+        color: $brand-primary;
+        background: {
+          color: $brand-primary;
+        }
+        border: {
+          color: $brand-primary;
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop.show {
+  display: none;
+}
+
