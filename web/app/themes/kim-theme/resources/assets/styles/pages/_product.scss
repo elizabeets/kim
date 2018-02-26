@@ -1,0 +1,47 @@
+body.woocommerce {
+  .woocommerce-result-count,
+  .woocommerce-ordering,
+  .ajax_add_to_cart,
+  .posted_in {
+    display: none;
+  }
+
+  &.archive {
+    .page-title {
+      display: none;
+    }
+
+    .woocommerce-loop-product__title {
+      text: {
+        align: center;
+      }
+    }
+
+    .product {
+      .attachment-woocommerce_thumbnail {
+        @extend .ease-effect;
+      }
+
+      &:hover {
+        .attachment-woocommerce_thumbnail {
+          transform: translateY(-10px);
+        }
+      }
+    }
+  }
+
+  &.single-product {
+    .related.products {
+      clear: both;
+      margin: {
+        top: 10px;
+      }
+
+      h2 {
+        margin: {
+          bottom: 1.6rem;
+        }
+      }
+    }
+  }
+}

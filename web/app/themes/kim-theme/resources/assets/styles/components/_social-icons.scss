@@ -1,4 +1,6 @@
 .social-icons {
+  margin: 0;
+
   .icon {
     @extend .ease-effect;
     $size: 35px;
@@ -11,7 +13,6 @@
     background: {
       color: $black;
     }
-
     border: {
       color: $gray-300;
       width: 1px;
@@ -37,6 +38,36 @@
       i,
       a {
         color: $black;
+      }
+    }
+
+    &.alternative {
+      margin: 0.95rem 0.2rem;
+      background: {
+        color: $white;
+      }
+      border: {
+        color: $white;
+      }
+
+      i,
+      a {
+        color: $brand-primary;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        background: {
+          color: $brand-primary;
+        }
+        border: {
+          color: $brand-primary;
+        }
+
+        i,
+        a {
+          color: $gray-300;
+        }
       }
     }
   }

@@ -3,8 +3,60 @@ section.newsletter {
   background: {
     color: $light-gray;
   }
+  text: {
+    align: center;
+  }
 
   form {
     padding: 2rem 0;
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  input[type="text"] {
+    font: 15px/24px "Lato", Arial, sans-serif;
+    color: #333;
+    width: 33%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    border: 0;
+    padding: 7px 0;
+    border-bottom: 1px solid #ccc;
+    background: {
+      color: $light-gray;
+    }
+  }
+
+  button {
+    @extend .ease-effect;
+
+    color: $white;
+    display: block;
+    padding: 1.4rem 9rem;
+    margin: 0.5rem auto;
+    background: {
+      color: $brand-primary;
+    }
+    font: {
+      weight: bold;
+    }
+
+    :hover {
+      background: {
+        color: lighten($brand-primary, 10%);
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    input[type="text"] {
+      width: 66%;
+    }
+
+    button {
+      padding: 1.4rem 5rem;
+    }
   }
 }

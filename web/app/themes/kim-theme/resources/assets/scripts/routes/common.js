@@ -5,7 +5,7 @@ export default {
   finalize() {
     // JavaScript to be fired on all pages, after page specific JS is fired
     //region Hero Slider
-    $('.hero-slider').slick({
+    $('.hero-slider, .slider').slick({
       slidesToShow: 1,
       dots: false,
       arrows: false,
@@ -25,6 +25,26 @@ export default {
         $('header.banner').removeClass('on');
       }
     });
+    //endregion\
+    //region Mobile Burger Menu
+    let trigger = $('#hamburger'),
+      isClosed = false;
+
+    function burgerTime() {
+      if (isClosed === true) {
+        trigger.removeClass('is-open');
+        trigger.addClass('is-closed');
+        isClosed = false;
+        $('.overlay').fadeOut();
+      } else {
+        trigger.removeClass('is-closed');
+        trigger.addClass('is-open');
+        isClosed = true;
+        $('.overlay').fadeIn();
+      }
+    }
+
+    trigger.click(burgerTime);
     //endregion
   },
 };

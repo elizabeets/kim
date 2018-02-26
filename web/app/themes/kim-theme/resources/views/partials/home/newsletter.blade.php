@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col">
         <form>
-          <input type="text" name="email" id="email" placeholder="Your Email Address">
+          <input type="text" name="email" id="email" class="effect-1" placeholder="Your Email Address"/>
           <button>
             I'm in
           </button>

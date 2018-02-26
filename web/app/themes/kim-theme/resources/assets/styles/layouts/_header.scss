@@ -1,5 +1,23 @@
 header.banner {
-  padding: 1rem 0;
+  padding: 0.25rem 0;
+  position: relative;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: {
+    color: $white;
+  }
+
+  &.on {
+    position: fixed;
+
+    .brand {
+      .site-logo {
+        max-width: 3.5rem;
+      }
+    }
+  }
 
   .brand {
     .site-logo {
@@ -15,22 +33,68 @@ header.banner {
   }
 
   .nav {
-    li {
+    .menu-item {
       @extend .nav-item;
-    }
 
-    a {
-      @extend .nav-link;
+      .sub-menu {
+        @extend .ease-effect;
 
-      padding: 1.3rem;
-      font: {
-        weight: bold;
+        z-index: 999;
+        display: none;
+        position: absolute;
+        top: 55px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: {
+          color: $brand-primary;
+        }
+        text: {
+          align: left;
+        }
+
+        li {
+          display: inline-block;
+          text: {
+            align: left;
+          }
+
+          a {
+            color: $white;
+          }
+        }
+      }
+
+      a {
+        @extend .nav-link, .ease-effect;
+
+        letter-spacing: 0;
+        padding: 1.4rem;
+        font: {
+          weight: bold;
+        }
       }
 
       &:hover {
-        color: $white;
-        background: {
-          color: $brand-primary;
+        > a {
+          transform: translateY(-5px);
+        }
+      }
+
+      &.current-menu-item {
+        border: {
+          bottom: {
+            color: $brand-primary;
+            width: 2px;
+            style: solid;
+          }
+        }
+
+        .sub-menu {
+          @extend .list-unstyled;
+
+          display: block;
         }
       }
     }
@@ -87,6 +151,30 @@ header.banner {
           width: 100%;
         }
       }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  header.banner {
+    z-index: 999;
+    padding: 0.5rem 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: {
+      color: $white;
+    }
+
+    .brand {
+      .site-logo {
+        max-width: 3.5rem;
+      }
+    }
+
+    .social-icons {
+      display: none;
     }
   }
 }

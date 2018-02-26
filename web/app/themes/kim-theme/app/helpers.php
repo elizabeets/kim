@@ -142,6 +142,30 @@ function display_sidebar()
 //endregion
 
 //region WILCO Web Helpers
+/**
+ * Return the width for a post in the main feed
+ *
+ * @param $index
+ *
+ * @return string
+ */
+function get_post_width( $index ) {
+    switch ( $index ) {
+        case 1:
+            $result = 'col-12';
+            break;
+        case 2:
+        case 3:
+            $result = 'col-12 col-sm-6 col-lg-6 flex-column align-self-end';
+            break;
+        default:
+            $result = 'col-12 col-sm-6';
+            break;
+    }
+
+    return $result;
+}
+
 /* Convert hexdec color string to rgb(a) string */
 function hex2rgba( $color, $opacity = false ) {
 

@@ -1,0 +1,58 @@
+body.template-bio {
+  section.bio-content {
+    height: 100vh;
+    padding: 3.5rem;
+    background: {
+      color: $brand-primary;
+    }
+
+    * {
+      color: $white;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 1.5rem;
+    }
+  }
+
+  section.slider {
+    $hero-height: 100vh;
+
+    position: relative;
+    width: 100%;
+    height: $hero-height;
+    overflow: hidden;
+    z-index: 100;
+
+    .slide {
+      width: 100%;
+      height: $hero-height;
+      background: {
+        repeat: no-repeat;
+        size: cover;
+        position: center center;
+      }
+    }
+
+    &.slick-dotted {
+      margin: 0;
+    }
+
+    .slick-dots {
+      bottom: 25px;
+
+      li {
+        button {
+          &::before {
+            color: $brand-primary;
+            font: {
+              size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

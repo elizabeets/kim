@@ -1,11 +1,8 @@
 <footer class="layout">
   <div class="container-fluid">
-    <div class="row justify-content-between">
-      <div class="col">
-        @include('partials.common.social-icons')
-      </div>
-      <div class="col">
-        {!! wp_nav_menu(['theme_location' => 'footer_navigation', 'menu_class' => 'nav text-right float-right']) !!}
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>made with ❤️ in 🇮🇱 </p>
       </div>
     </div>
   </div>

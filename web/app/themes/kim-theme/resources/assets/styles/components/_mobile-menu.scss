@@ -1,0 +1,59 @@
+.overlay {
+  display: none;
+  color: $brand-primary;
+  z-index: 999;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: {
+    color: transparentize($white, 0.05);
+  }
+  text: {
+    align: left;
+  }
+  padding: {
+    top: 2rem;
+  }
+
+  .menu,
+  .sub-menu {
+    @extend .list-unstyled;
+  }
+
+  a {
+    width: 100%;
+    color: $brand-primary;
+    font: {
+      family: $heading-font;
+      size: 2rem;
+    }
+    text: {
+      transform: uppercase;
+    }
+    border: {
+      bottom: {
+        color: $brand-primary;
+        width: 2px;
+        style: solid;
+      }
+    }
+    padding: {
+      left: 1rem;
+    }
+
+    :hover {
+      padding: {
+        left: 2rem;
+      }
+      border: {
+        bottom: {
+          color: $brand-primary;
+          width: 2px;
+          style: solid;
+        }
+      }
+    }
+  }
+}
