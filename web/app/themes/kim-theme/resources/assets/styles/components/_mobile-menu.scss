@@ -22,36 +22,43 @@
     @extend .list-unstyled;
   }
 
-  a {
-    width: 100%;
-    color: $brand-primary;
-    font: {
-      family: $heading-font;
-      size: 2rem;
-    }
-    text: {
-      transform: uppercase;
-    }
-    border: {
-      bottom: {
-        color: $brand-primary;
-        width: 2px;
-        style: solid;
-      }
-    }
-    padding: {
-      left: 1rem;
-    }
+  .menu-item {
+    a {
+      @extend .ease-effect;
 
-    :hover {
-      padding: {
-        left: 2rem;
+      width: 100%;
+      color: $brand-primary;
+      font: {
+        family: $heading-font;
+        size: 2rem;
+      }
+      text: {
+        transform: uppercase;
       }
       border: {
         bottom: {
           color: $brand-primary;
           width: 2px;
           style: solid;
+        }
+      }
+      padding: {
+        left: 1rem;
+      }
+
+      &:active,
+      &:hover,
+      &:focus {
+        text: {
+          decoration: none;
+        }
+      }
+    }
+
+    &:hover {
+      a {
+        padding: {
+          left: 2rem;
         }
       }
     }

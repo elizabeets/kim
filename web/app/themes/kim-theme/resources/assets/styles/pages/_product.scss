@@ -40,6 +40,12 @@ body.woocommerce {
   }
 
   &.single-product {
+    .contact-button {
+      .btn {
+        display: block;
+      }
+    }
+
     .related.products {
       clear: both;
       margin: {

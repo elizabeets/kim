@@ -65,14 +65,18 @@ section.newsletter {
       transform: translateY(1.5px);
     }
   }
+}
 
-  @include media-breakpoint-down(md) {
+@include media-breakpoint-down(md) {
+  section.newsletter {
     input[type="text"] {
-      width: 66%;
+      width: 85%;
     }
 
     button {
-      padding: 1.4rem 5rem;
+      width: 85%;
+      padding: 1.4rem 6rem;
+      margin: 0.5rem auto 0;
     }
   }
 }

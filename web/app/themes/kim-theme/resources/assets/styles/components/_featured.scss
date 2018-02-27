@@ -42,7 +42,6 @@ section.featured {
       right: 0;
       bottom: 0;
       left: 0;
-      margin: -25px 0;
       height: 85px;
       transform: translateY(-20px);
 
@@ -77,13 +76,24 @@ section.featured {
       }
     }
   }
+}
 
-  @include media-breakpoint-down(md) {
+@include media-breakpoint-down(md) {
+  section.featured {
+    padding: {
+      bottom: 1.5rem;
+    }
+
     article {
+      height: 15rem;
+      margin: {
+        bottom: 1rem;
+      }
+
       header {
         h2 {
           font: {
-            size: 3rem;
+            size: 2rem;
           }
         }
       }
