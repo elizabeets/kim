@@ -156,6 +156,10 @@ header.banner {
 
 @include media-breakpoint-down(md) {
   header.banner {
+    background: {
+      color: $white;
+    }
+
     .brand {
       .site-logo {
         max-width: 3.5rem;
