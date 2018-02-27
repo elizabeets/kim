@@ -312,11 +312,4 @@ function wc_change_myaccount_menu() {
 
     return $myorder;
 }
-
 //endregion
-
-add_action( 'admin_bar_menu', 'show_template' );
-function show_template() {
-    global $template;
-    print_r( $template );
-}

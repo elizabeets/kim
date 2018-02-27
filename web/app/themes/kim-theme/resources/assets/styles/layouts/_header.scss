@@ -63,9 +63,7 @@ header.banner {
         }
 
         a {
-          &::first-letter {
-            color: transparentize($brand-primary, 0.6);
-          }
+          color: transparentize($brand-primary, 0.6);
         }
       }
 

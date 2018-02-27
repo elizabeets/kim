@@ -63,3 +63,35 @@ body.template-bio {
     }
   }
 }
+
+@include media-breakpoint-down(md) {
+  body.template-bio {
+    .wrap {
+      margin: {
+        top: 5rem;
+      }
+    }
+
+    section.bio-content {
+      height: auto;
+      padding: 15px;
+      margin: {
+        bottom: 2rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 1rem 0;
+      }
+    }
+
+    section.slider {
+      height: 40vh;
+
+      .slide {
+        height: 40vh;
+      }
+    }
+  }
+}
