@@ -13,12 +13,12 @@ export default {
         trigger.removeClass('is-open');
         trigger.addClass('is-closed');
         isClosed = false;
-        $('.overlay').fadeOut();
+        $('.mobile-menu-overlay').fadeOut();
       } else {
         trigger.removeClass('is-closed');
         trigger.addClass('is-open');
         isClosed = true;
-        $('.overlay').fadeIn();
+        $('.mobile-menu-overlay').fadeIn();
       }
     }
 

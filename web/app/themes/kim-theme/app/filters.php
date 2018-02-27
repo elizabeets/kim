@@ -139,4 +139,9 @@ add_filter( 'woocommerce_short_description',
     },
     10,
     2 );
+
+// Change number or products per row to 3
+add_filter('loop_shop_columns', function () {
+    return 3; // 3 products per row
+});
 //endregion

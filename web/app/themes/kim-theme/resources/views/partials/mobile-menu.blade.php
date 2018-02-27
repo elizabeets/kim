@@ -33,7 +33,7 @@
 
   </div>
 
-  <div class="overlay">
+  <div class="mobile-menu-overlay">
     <nav>
       @if(!is_user_logged_in())
         @if (has_nav_menu('primary_navigation'))

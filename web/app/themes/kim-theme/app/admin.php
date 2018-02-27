@@ -30,8 +30,8 @@ add_action( 'customize_preview_init',
             true );
     } );
 
-add_action( 'admin_bar_menu',
+/*add_action( 'admin_bar_menu',
     function () {
         global $template;
         print_r( $template );
-    } );
+    } );*/
