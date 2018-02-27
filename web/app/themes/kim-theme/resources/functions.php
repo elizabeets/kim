@@ -148,7 +148,7 @@ if ( ! file_exists( get_template_directory()
  * Fix menu class for current active CPT item
  *
  * @param array $classes
- * @param bool $menu_item
+ * @param bool  $menu_item
  *
  * @return array
  */
@@ -161,11 +161,14 @@ function custom_active_item_classes( $classes = array(), $menu_item = false ) {
 
     // Checking if post ID exist...
     if ( isset( $id ) ) {
-        $classes[] = ( $menu_item->url == get_post_type_archive_link( $post->post_type ) ) ? 'current-menu-item active' : '';
+        $classes[] = ( $menu_item->url
+                       == get_post_type_archive_link( $post->post_type ) )
+            ? 'current-menu-item active' : '';
     }
 
     return $classes;
 }
+
 //endregion
 
 //region WooCommerce Modifications
@@ -180,7 +183,8 @@ function wooc_extra_register_fields() { ?>
             <?php _e( 'First name', 'woocommerce' ); ?>
             <span class="required">*</span>
         </label>
-        <input type="text" class="input-text" name="first_name" id="reg_billing_first_name"
+        <input type="text" class="input-text" name="first_name"
+               id="reg_billing_first_name"
                value="<?php if ( ! empty( $_POST['first_name'] ) ) {
                    esc_attr_e( $_POST['first_name'] );
                } ?>"/>
@@ -190,7 +194,8 @@ function wooc_extra_register_fields() { ?>
             <?php _e( 'Last name', 'woocommerce' ); ?>
             <span class="required">*</span>
         </label>
-        <input type="text" class="input-text" name="last_name" id="reg_billing_last_name"
+        <input type="text" class="input-text" name="last_name"
+               id="reg_billing_last_name"
                value="<?php if ( ! empty( $_POST['last_name'] ) ) {
                    esc_attr_e( $_POST['last_name'] );
                } ?>"/>
@@ -212,13 +217,24 @@ function reset_anti_spam_trap() {
 /**
  * WooCommerce: register fields Validating.
  */
-add_action( 'woocommerce_register_post', 'wooc_validate_extra_register_fields', 10, 4 );
-function wooc_validate_extra_register_fields( $username, $email, $validation_errors ) {
+add_action( 'woocommerce_register_post',
+    'wooc_validate_extra_register_fields',
+    10,
+    4 );
+function wooc_validate_extra_register_fields(
+    $username,
+    $email,
+    $validation_errors
+) {
     if ( isset( $POST['first_name'] ) && empty( $_POST['first_name'] ) ) {
-        $validation_errors->add( 'billing_first_name_error', _( '<strong>Error</strong>: First name is required!', 'woocommerce' ) );
+        $validation_errors->add( 'billing_first_name_error',
+            _( '<strong>Error</strong>: First name is required!',
+                'woocommerce' ) );
     }
     if ( isset( $POST['last_name'] ) && empty( $_POST['last_name'] ) ) {
-        $validation_errors->add( 'billing_last_name_error', _( '<strong>Error</strong>: Last name is required!.', 'woocommerce' ) );
+        $validation_errors->add( 'billing_last_name_error',
+            _( '<strong>Error</strong>: Last name is required!.',
+                'woocommerce' ) );
     }
 
     return $validation_errors;
@@ -231,19 +247,29 @@ add_action( 'woocommerce_created_customer', 'wooc_save_extra_register_fields' );
 function wooc_save_extra_register_fields( $customer_id ) {
     if ( isset( $_POST['first_name'] ) ) {
         //First name field which is by default
-        update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['first_name'] ) );
+        update_user_meta( $customer_id,
+            'first_name',
+            sanitize_text_field( $_POST['first_name'] ) );
         // First name field which is used in WooCommerce
-        update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['first_name'] ) );
+        update_user_meta( $customer_id,
+            'first_name',
+            sanitize_text_field( $_POST['first_name'] ) );
     }
     if ( isset( $_POST['last_name'] ) ) {
         // Last name field which is by default
-        update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['last_name'] ) );
+        update_user_meta( $customer_id,
+            'last_name',
+            sanitize_text_field( $_POST['last_name'] ) );
         // Last name field which is used in WooCommerce
-        update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['last_name'] ) );
+        update_user_meta( $customer_id,
+            'last_name',
+            sanitize_text_field( $_POST['last_name'] ) );
     }
 }
 
-add_action( 'woocommerce_before_variations_form', 'wc_shop_enquiry_button', 15 );
+add_action( 'woocommerce_before_variations_form',
+    'wc_shop_enquiry_button',
+    15 );
 function wc_shop_enquiry_button() {
     echo '<a class="btn btn-outline-primary contact-button" href="/contact">Contact Me</a>';
 }
@@ -257,7 +283,8 @@ function wc_shop_enquiry_button() {
  * 1 = Weak
  * 0 = Very Weak / Anything
  */
-add_filter( 'woocommerce_min_password_strength', 'reduce_woocommerce_min_strength_requirement' );
+add_filter( 'woocommerce_min_password_strength',
+    'reduce_woocommerce_min_strength_requirement' );
 function reduce_woocommerce_min_strength_requirement( $strength ) {
     return 1;
 }
@@ -274,16 +301,22 @@ add_filter( 'woocommerce_account_menu_items', 'wc_change_myaccount_menu' );
 function wc_change_myaccount_menu() {
     $myorder = array(
 //        'my-custom-endpoint' => __( 'My Stuff', 'woocommerce' ),
-        'dashboard' => __( 'Dashboard', 'woocommerce' ),
+'dashboard'       => __( 'Dashboard', 'woocommerce' ),
 'orders'          => __( 'My Orders', 'woocommerce' ),
 'subscriptions'   => __( 'My Subscriptions', 'woocommerce' ),
 'edit-address'    => __( 'My Addresses', 'woocommerce' ),
 'payment-methods' => __( 'My Payment Methods', 'woocommerce' ),
 'edit-account'    => __( 'My User Details', 'woocommerce' ),
-        'customer-logout' => __( 'Logout', 'woocommerce' ),
+'customer-logout' => __( 'Logout', 'woocommerce' ),
     );
 
     return $myorder;
 }
 
 //endregion
+
+add_action( 'admin_bar_menu', 'show_template' );
+function show_template() {
+    global $template;
+    print_r( $template );
+}

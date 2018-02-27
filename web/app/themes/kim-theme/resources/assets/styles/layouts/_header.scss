@@ -8,7 +8,7 @@ header.banner {
   right: 0;
   left: 0;
   background: {
-    color: $white;
+    color: transparentize($white, 0.5);
   }
 
   .nav {
@@ -55,19 +55,17 @@ header.banner {
         }
       }
 
-      &:not(.menu-item-has-children) {
-        &:hover {
-          > a {
-            transform: translateY(-5px);
-          }
-        }
-      }
-
       &:hover {
         .sub-menu {
           @extend .list-unstyled;
 
           display: block;
+        }
+
+        a {
+          &::first-letter {
+            color: transparentize($brand-primary, 0.6);
+          }
         }
       }
 
@@ -92,13 +90,15 @@ header.banner {
       }
 
       &:hover {
-        opacity: 0.5;
+        transform: scale(1.1);
       }
     }
   }
 
   &.on {
-    position: fixed;
+    background: {
+      color: $white;
+    }
   }
 
   &.float {
@@ -168,5 +168,11 @@ header.banner {
     .nav {
       display: none;
     }
+  }
+}
+
+body.admin-bar {
+  header.banner {
+    margin-top: 32px;
   }
 }
