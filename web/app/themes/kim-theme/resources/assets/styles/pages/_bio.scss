@@ -1,4 +1,11 @@
 body.template-bio {
+  .wrap {
+    padding: {
+      top: 0 !important;
+      bottom: 0 !important;
+    }
+  }
+
   section.bio-content {
     height: 100vh;
     padding: 3.5rem;

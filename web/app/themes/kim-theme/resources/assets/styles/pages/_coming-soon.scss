@@ -1,13 +1,13 @@
 body.template-coming-soon {
   height: 100vh;
   background: {
-    image: url("/app/uploads/2018/01/IMG_7984.jpg");
+    image: url("http://assets.kimheyman.com/app/uploads/2018/01/26073800/IMG_7984.jpg");
     repeat: no-repeat;
     size: cover;
     position: left center;
   }
 
-  .overlay {
+  .coming-soon-overlay {
     z-index: 98;
     position: fixed;
     top: 0;

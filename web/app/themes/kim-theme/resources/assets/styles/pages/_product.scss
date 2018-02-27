@@ -18,13 +18,18 @@ body.woocommerce {
     }
 
     .product {
-      .attachment-woocommerce_thumbnail {
+      .attachment-woocommerce_thumbnail,
+      .woocommerce-loop-product__title {
         @extend .ease-effect;
       }
 
       &:hover {
         .attachment-woocommerce_thumbnail {
           transform: translateY(-10px);
+        }
+
+        .woocommerce-loop-product__title {
+          opacity: 0.5;
         }
       }
     }
@@ -40,6 +45,23 @@ body.woocommerce {
       h2 {
         margin: {
           bottom: 1.6rem;
+        }
+      }
+
+      .product {
+        .attachment-woocommerce_thumbnail,
+        .woocommerce-loop-product__title {
+          @extend .ease-effect;
+        }
+
+        &:hover {
+          .attachment-woocommerce_thumbnail {
+            transform: translateY(-10px);
+          }
+
+          .woocommerce-loop-product__title {
+            opacity: 0.5;
+          }
         }
       }
     }

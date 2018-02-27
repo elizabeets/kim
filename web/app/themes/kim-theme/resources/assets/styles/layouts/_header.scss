@@ -1,35 +1,14 @@
 header.banner {
-  padding: 0.25rem 0;
-  position: relative;
-  z-index: 999;
+  @extend .ease-effect;
+
+  padding: 0;
+  z-index: 5000;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   background: {
     color: $white;
-  }
-
-  &.on {
-    position: fixed;
-
-    .brand {
-      .site-logo {
-        max-width: 3.5rem;
-      }
-    }
-  }
-
-  .brand {
-    .site-logo {
-      @extend .ease-effect;
-
-      width: 100%;
-      max-width: 5rem;
-
-      &:hover {
-        opacity: 0.5;
-      }
-    }
   }
 
   .nav {
@@ -72,32 +51,54 @@ header.banner {
         letter-spacing: 0;
         padding: 1.4rem;
         font: {
-          weight: bold;
+          weight: normal;
+        }
+      }
+
+      &:not(.menu-item-has-children) {
+        &:hover {
+          > a {
+            transform: translateY(-5px);
+          }
         }
       }
 
       &:hover {
-        > a {
-          transform: translateY(-5px);
-        }
-      }
-
-      &.current-menu-item {
-        border: {
-          bottom: {
-            color: $brand-primary;
-            width: 2px;
-            style: solid;
-          }
-        }
-
         .sub-menu {
           @extend .list-unstyled;
 
           display: block;
         }
       }
+
+      &.current-menu-item {
+        a {
+          font: {
+            weight: bold;
+          }
+        }
+      }
     }
+  }
+
+  .brand {
+    .site-logo {
+      @extend .ease-effect;
+
+      width: 100%;
+      max-width: 3.5rem;
+      margin: {
+        top: 0.35rem;
+      }
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.on {
+    position: fixed;
   }
 
   &.float {
@@ -157,23 +158,14 @@ header.banner {
 
 @include media-breakpoint-down(md) {
   header.banner {
-    z-index: 999;
-    padding: 0.5rem 0;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    background: {
-      color: $white;
-    }
-
     .brand {
       .site-logo {
         max-width: 3.5rem;
       }
     }
 
-    .social-icons {
+    .social-icons,
+    .nav {
       display: none;
     }
   }

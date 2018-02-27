@@ -2,10 +2,10 @@
   Template Name: Coming Soon Template
 --}}
 
-@extends('layouts.app')
+@extends('layouts.indie')
 
 @section('content')
-  <div class="overlay"></div>
+  <div class="coming-soon-overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-12 text-center splash">
@@ -18,14 +18,10 @@
           <p>We're excited to be part of your world soon!
             <br/>
             Feel free to contact me via the channels below</p>
-            @include('partials.common.social-icons')
+          @include('partials.common.social-icons')
         </div>
 
       </div>
     </div>
   </div>
-  </div>
-  {{--@while(have_posts()) @php(the_post())
-    @include('partials.content-page')
-  @endwhile--}}
 @endsection

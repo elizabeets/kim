@@ -16,8 +16,10 @@ section.newsletter {
   }
 
   input[type="text"] {
+    @extend .ease-effect;
+
     font: 15px/24px "Lato", Arial, sans-serif;
-    color: #333;
+    color: $dark-gray;
     width: 33%;
     box-sizing: border-box;
     letter-spacing: 1px;
@@ -27,11 +29,21 @@ section.newsletter {
     background: {
       color: $light-gray;
     }
+
+    &:focus {
+      color: $black;
+      border: {
+        bottom: {
+          color: $black;
+        }
+      }
+    }
   }
 
   button {
     @extend .ease-effect;
 
+    cursor: pointer;
     color: $white;
     display: block;
     padding: 1.4rem 9rem;
@@ -43,10 +55,14 @@ section.newsletter {
       weight: bold;
     }
 
-    :hover {
+    &:hover {
       background: {
         color: lighten($brand-primary, 10%);
       }
+    }
+
+    &:active {
+      transform: translateY(1.5px);
     }
   }
 

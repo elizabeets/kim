@@ -1,4 +1,11 @@
 section.featured {
+  background: {
+    color: $light-gray;
+  }
+  padding: {
+    bottom: 3rem;
+  }
+
   article {
     @extend .ease-effect;
 
@@ -10,7 +17,7 @@ section.featured {
       position: center center;
     }
 
-    .overlay {
+    .featured-overlay {
       @extend .ease-effect;
 
       z-index: 80;
@@ -59,13 +66,25 @@ section.featured {
     }
 
     &:hover {
-      .overlay {
+      .featured-overlay {
         opacity: 0;
       }
 
       header {
         h2 {
           color: $white;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    article {
+      header {
+        h2 {
+          font: {
+            size: 3rem;
+          }
         }
       }
     }

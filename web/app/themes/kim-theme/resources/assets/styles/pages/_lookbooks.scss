@@ -1,0 +1,88 @@
+body.template-lookbooks {
+  article.lookbook {
+    @extend .ease-effect;
+
+    margin: {
+      bottom: 3.5rem;
+    }
+
+    &:first-child {
+      margin: {
+        top: 6rem;
+      }
+    }
+
+    .lookbook-front {
+      .info {
+        button {
+          @extend .ease-effect;
+
+          cursor: pointer;
+          padding: 0.85rem 2.5rem;
+          color: $brand-primary;
+          background: {
+            color: $white;
+          }
+          border: {
+            color: $brand-primary;
+            width: 0.2rem;
+            style: solid;
+          }
+          font: {
+            weight: bold;
+          }
+
+          &:focus {
+            color: $light-gray;
+            outline: none;
+            background: {
+              color: transparentize($brand-primary, 0.5);
+            }
+          }
+
+          &:hover,
+          &:active {
+            color: $white;
+            background: {
+              color: $brand-primary;
+            }
+          }
+
+          &:active {
+            transform: translateY(2.5px);
+          }
+        }
+      }
+    }
+
+    .lookbook-back {
+      display: none;
+    }
+
+    .flip-lookbook {
+      @extend .ease-effect;
+
+      display: inline-block;
+      color: $brand-primary;
+      cursor: pointer;
+      padding: 0.55rem 0.85rem;
+      border: {
+        radius: 50%;
+      }
+      margin: {
+        top: 15px;
+      }
+
+      &:hover {
+        color: $white;
+        background: {
+          color: $brand-primary;
+        }
+      }
+
+      &:active {
+        transform: translateY(2.5px);
+      }
+    }
+  }
+}

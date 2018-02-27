@@ -1,11 +1,28 @@
 body {
   .wrap {
     min-height: 100vh;
+    margin: {
+      top: 4rem;
+    }
+
+    strong {
+      font: {
+        weight: bold;
+      }
+    }
+
+    h4 {
+      margin: {
+        bottom: 1.4rem;
+      }
+    }
   }
 
-  &:not(.home) {
+  &.woocommerce {
     .wrap {
-      padding: 5rem 0;
+      margin: {
+        top: 10rem;
+      }
     }
   }
 }

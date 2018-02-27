@@ -1,5 +1,9 @@
 body.template-home {
-  // smth
+  .wrap {
+    margin: {
+      top: 4rem;
+    }
+  }
 }
 
 @include media-breakpoint-down(md) {

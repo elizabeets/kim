@@ -5,6 +5,7 @@
     @extend .ease-effect;
     $size: 35px;
 
+    cursor: pointer;
     width: $size;
     height: $size;
     border: {

@@ -18,7 +18,7 @@ export default {
     //endregion
     //region Header functionality
     $(window).scroll(function() {
-      if ($(window).scrollTop() > 100) {
+      if ($(document).height() > 2500 && $(window).scrollTop() > 100) {
         $('header.banner').addClass('on');
       }
       else {
@@ -45,6 +45,27 @@ export default {
     }
 
     trigger.click(burgerTime);
+    //endregion
+    //region Lookbooks
+    $('article.lookbook button').click(function() {
+      const lookbook = $(this).closest('article.lookbook');
+      const siblings = $('article.lookbook');
+      siblings.removeClass('current-lookbook');
+      siblings.find('.lookbook-back').fadeOut();
+      siblings.find('.lookbook-front').fadeIn();
+      lookbook.addClass('current-lookbook');
+      siblings.css('opacity', 1);
+      siblings.not('.current-lookbook').css('opacity', 0.5);
+      lookbook.find('.lookbook-back').fadeIn();
+      lookbook.find('.lookbook-front').fadeOut();
+    });
+    $('.flip-lookbook').click(function() {
+      const lookbook = $(this).closest('article.lookbook');
+      lookbook.find('.lookbook-front').fadeIn();
+      lookbook.find('.lookbook-back').fadeOut();
+      lookbook.removeClass('current-lookbook');
+      $('article.lookbook').not('.current-lookbook').css('opacity', 1);
+    });
     //endregion
   },
 };

@@ -243,39 +243,9 @@ function wooc_save_extra_register_fields( $customer_id ) {
     }
 }
 
-
-/**
- * WooCommerce: Show Quantity next to 'add' button in product loop
- */
-/*add_filter( 'woocommerce_loop_add_to_cart_link', 'quantity_inputs_for_woocommerce_loop_add_to_cart_link', 10, 2 );
-function quantity_inputs_for_woocommerce_loop_add_to_cart_link( $html, $product ) {
-    $product_id    = $product->get_id();
-    $cart_quantity = WC()->cart->get_cart_item_quantities();
-
-    if ( array_key_exists( $product_id, $cart_quantity ) ) {
-        $cart_quantity = (string) $cart_quantity[ $product_id ];
-    } else {
-        $cart_quantity = '1';
-    }
-
-    if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
-        $html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data">';
-        $html .= woocommerce_quantity_input( [
-            'input_value' => $cart_quantity
-        ], $product, false );
-        $html .= '<button type="submit" class="button alt d-inline-block mt-0">' . esc_html( $product->add_to_cart_text() ) . '</button>';
-        $html .= '</form>';
-    }
-
-    return $html;
-}*/
-
-/**
- * WooCommerce: Add 'Continue Shopping' button to a Product Page
- */
-add_action( 'woocommerce_after_add_to_cart_button', 'wc_shop_return_back_button', 20 );
-function wc_shop_return_back_button() {
-    echo '<a class="btn btn-outline-primary continue-shopping" href="' . esc_url( wc_get_page_permalink( 'shop' ) ) . '">Continue Shopping</a>';
+add_action( 'woocommerce_before_variations_form', 'wc_shop_enquiry_button', 15 );
+function wc_shop_enquiry_button() {
+    echo '<a class="btn btn-outline-primary contact-button" href="/contact">Contact Me</a>';
 }
 
 /**
