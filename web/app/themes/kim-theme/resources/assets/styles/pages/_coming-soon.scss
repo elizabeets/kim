@@ -28,9 +28,9 @@ body.template-coming-soon {
     bottom: auto;
 
     h3 {
-      color: $black;
+      color: $brand-primary;
       font: {
-        family: "mr-eaves-xl-modern", sans-serif;
+        family: $heading-font;
         weight: bold;
         size: 2.5rem;
       }
