@@ -1,7 +1,7 @@
 export default {
   init() {
     // JavaScript to be fired on all pages
-    $('input[name="subject"]').val($('.product_title').text());
+    $('input[name="your-subject"]').val($('.product_title').text());
     $('.contact-button a').click(function(e) {
       e.preventDefault();
       e.stopPropagation();

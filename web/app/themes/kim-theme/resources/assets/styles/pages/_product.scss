@@ -2,7 +2,8 @@ body.woocommerce {
   .woocommerce-result-count,
   .woocommerce-ordering,
   .ajax_add_to_cart,
-  .posted_in {
+  .posted_in,
+  .tagged_as {
     display: none;
   }
 
@@ -34,7 +35,7 @@ body.woocommerce {
       }
     }
 
-    .contact-button {
+    .wpcf7 {
       display: none;
     }
   }

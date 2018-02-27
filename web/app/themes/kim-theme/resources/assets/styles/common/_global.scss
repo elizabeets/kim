@@ -143,6 +143,14 @@ a {
 }
 
 form {
+  div[class="container"],
+  div[class="container-fluid"],
+  div[class="row"],
+  div[class^="col"],
+  div[class^="col-"] {
+    padding: 0;
+  }
+
   div[class^="col-"] {
     position: relative;
 

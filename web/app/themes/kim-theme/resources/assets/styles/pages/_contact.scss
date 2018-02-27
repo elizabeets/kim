@@ -1,0 +1,12 @@
+body.contact {
+  .wrap {
+    margin: {
+      top: 10rem;
+    }
+  }
+
+  .contact-button,
+  .success-message {
+    display: none !important;
+  }
+}
