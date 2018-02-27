@@ -85,4 +85,16 @@ body.template-lookbooks {
       }
     }
   }
+
+  @include media-breakpoint-down(md) {
+    article.lookbook {
+      .lookbook-front {
+        .info {
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }

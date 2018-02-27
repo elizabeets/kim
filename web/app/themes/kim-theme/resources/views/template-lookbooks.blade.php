@@ -14,12 +14,12 @@
       <article class="lookbook">
         <div class="container">
           <div class="lookbook-front row">
-            <div class="info col-4 text-right">
+            <div class="info col-12 col-md-4 text-left text-md-right order-last order-md-first">
               <h2>{!! $lookbook['title'] !!}</h2>
               {!! $lookbook['description'] !!}
               <button>Show more</button>
             </div>
-            <div class="image col-8 text-left">
+            <div class="image col-12 col-md-8 text-left order-first order-md-last">
               <div class="image-container">
                 <img src="{{ $lookbook['cover_image']['url'] }}"/>
               </div>
