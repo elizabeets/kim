@@ -91,10 +91,6 @@ img {
   max-width: 100%;
 }
 
-.btn-primary {
-  color: $main-background;
-}
-
 a {
   color: $brand-primary;
 
@@ -110,6 +106,7 @@ a {
 }
 
 .btn-primary {
+  color: $main-background;
   border: {
     color: $brand-primary;
   }
@@ -145,6 +142,42 @@ a {
   }
 }
 
+form {
+  div[class^="col-"] {
+    position: relative;
+
+    .wpcf7-form-control-wrap {
+      position: static;
+    }
+
+    .wpcf7-not-valid-tip {
+      font-size: 13px;
+      color: $code-red;
+      font-weight: 600;
+      padding-left: 2px;
+      text-align: left;
+      position: absolute;
+      top: 13px;
+      right: 30px;
+      text-transform: lowercase;
+    }
+
+    .wpcf7-validation-errors {
+      border-color: $code-red;
+    }
+  }
+
+  .wpcf7-validation-errors,
+  .ajax-loader,
+  .wpcf7-mail-sent-ok {
+    display: none !important;
+  }
+
+  img {
+    width: auto;
+  }
+}
+
 #cookie-notice {
   .button {
     @extend .btn, .btn-primary, .btn-sm;
@@ -154,28 +187,3 @@ a {
     @extend .btn, .btn-outline-primary, .btn-sm;
   }
 }
-
-.modal {
-  .modal-dialog {
-    .modal-content {
-      background: {
-        color: $secondary-background;
-      }
-
-      hr {
-        color: $brand-primary;
-        background: {
-          color: $brand-primary;
-        }
-        border: {
-          color: $brand-primary;
-        }
-      }
-    }
-  }
-}
-
-.modal-backdrop.show {
-  display: none;
-}
-

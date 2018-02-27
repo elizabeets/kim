@@ -133,8 +133,8 @@ if ( function_exists( 'acf_add_options_page' ) ) {
  */
 add_filter( 'woocommerce_short_description',
     function ( $content ) {
-        $content .= '<div class="contact-button"><a href="/contact" class="btn btn-outline-success btn-lg">Get more details</a></div>';
-
+        $content .= ''
+        . do_shortcode(get_field('product_page_contact_form_shortcode', 'option'));
         return $content;
     },
     10,

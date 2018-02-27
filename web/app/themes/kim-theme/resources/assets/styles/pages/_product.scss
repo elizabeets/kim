@@ -40,10 +40,9 @@ body.woocommerce {
   }
 
   &.single-product {
-    .contact-button {
-      .btn {
-        display: block;
-      }
+    .form,
+    .success-message {
+      display: none;
     }
 
     .related.products {
@@ -72,6 +71,18 @@ body.woocommerce {
           .woocommerce-loop-product__title {
             opacity: 0.5;
           }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  body.woocommerce {
+    &.single-product {
+      .contact-button {
+        .btn {
+          display: block;
         }
       }
     }
