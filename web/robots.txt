@@ -1,3 +1,5 @@
 Sitemap: https://kimheyman.com/sitemap_index.xml
 
 User-agent: *
+Disallow: /wp/wp-admin/
+Allow: /wp/wp-admin/admin-ajax.php
