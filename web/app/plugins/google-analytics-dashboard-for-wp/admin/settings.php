@@ -36,6 +36,8 @@ final class GADWP_Settings {
 				$options['ga_force_ssl'] = 0;
 				$options['ga_pagescrolldepth_tracking'] = 0;
 				$options['tm_pagescrolldepth_tracking'] = 0;
+				$options['tm_optout'] = 0;
+				$options['tm_dnt_optout'] = 0;
 				$options['amp_tracking_analytics'] = 0;
 				$options['amp_tracking_clientidapi'] = 0;
 				$options['amp_tracking_tagmanager'] = 0;
@@ -43,6 +45,7 @@ final class GADWP_Settings {
 				$options['optimize_tracking'] = 0;
 				$options['trackingcode_infooter'] = 0;
 				$options['trackingevents_infooter'] = 0;
+				$options['ga_with_gtag'] = 0;
 				if ( isset( $_POST['options']['ga_tracking_code'] ) ) {
 					$new_options['ga_tracking_code'] = trim( $new_options['ga_tracking_code'], "\t" );
 				}
@@ -387,7 +390,7 @@ final class GADWP_Settings {
 						<?php if ( 'universal' == $options['tracking_type'] ) :?>
 						<?php $tabs = array( 'basic' => __( "Basic Settings", 'google-analytics-dashboard-for-wp' ), 'events' => __( "Events Tracking", 'google-analytics-dashboard-for-wp' ), 'custom' => __( "Custom Definitions", 'google-analytics-dashboard-for-wp' ), 'exclude' => __( "Exclude Tracking", 'google-analytics-dashboard-for-wp' ), 'advanced' => __( "Advanced Settings", 'google-analytics-dashboard-for-wp' ), 'integration' => __( "Integration", 'google-analytics-dashboard-for-wp' ) );?>
 						<?php elseif ( 'tagmanager' == $options['tracking_type'] ) :?>
-						<?php $tabs = array( 'basic' => __( "Basic Settings", 'google-analytics-dashboard-for-wp' ), 'tmdatalayervars' => __( "DataLayer Variables", 'google-analytics-dashboard-for-wp' ), 'exclude' => __( "Exclude Tracking", 'google-analytics-dashboard-for-wp' ), 'tmintegration' => __( "Integration", 'google-analytics-dashboard-for-wp' ) );?>
+						<?php $tabs = array( 'basic' => __( "Basic Settings", 'google-analytics-dashboard-for-wp' ), 'tmdatalayervars' => __( "DataLayer Variables", 'google-analytics-dashboard-for-wp' ), 'exclude' => __( "Exclude Tracking", 'google-analytics-dashboard-for-wp' ), 'tmadvanced' =>  __( "Advanced Settings", 'google-analytics-dashboard-for-wp' ), 'tmintegration' => __( "Integration", 'google-analytics-dashboard-for-wp' ) );?>
 						<?php else :?>
 						<?php $tabs = array( 'basic' => __( "Basic Settings", 'google-analytics-dashboard-for-wp' ) );?>
 						<?php endif; ?>
@@ -419,6 +422,18 @@ final class GADWP_Settings {
 									<td>
 										<?php $profile_info = GADWP_Tools::get_selected_profile($gadwp->config->options['ga_profiles_list'], $gadwp->config->options['tableid_jail']); ?>
 										<?php echo '<pre>' . __("View Name:", 'google-analytics-dashboard-for-wp') . "\t" . esc_html($profile_info[0]) . "<br />" . __("Tracking ID:", 'google-analytics-dashboard-for-wp') . "\t" . esc_html($profile_info[2]) . "<br />" . __("Default URL:", 'google-analytics-dashboard-for-wp') . "\t" . esc_html($profile_info[3]) . "<br />" . __("Time Zone:", 'google-analytics-dashboard-for-wp') . "\t" . esc_html($profile_info[5]) . '</pre>';?>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" class="gadwp-settings-title">
+										<div class="button-primary gadwp-settings-switchoo">
+											<input type="checkbox" name="options[ga_with_gtag]" value="1" class="gadwp-settings-switchoo-checkbox" id="ga_with_gtag" <?php checked( $options['ga_with_gtag'], 1 ); ?>>
+											<label class="gadwp-settings-switchoo-label" for="ga_with_gtag">
+												<div class="gadwp-settings-switchoo-inner"></div>
+												<div class="gadwp-settings-switchoo-switch"></div>
+											</label>
+										</div>
+										<div class="switch-desc"><?php echo " ".__("use global site tag gtag.js (not recommended)", 'google-analytics-dashboard-for-wp' );?></div>
 									</td>
 								</tr>
 								<?php elseif ( 'tagmanager' == $options['tracking_type'] ) : ?>
@@ -705,21 +720,6 @@ final class GADWP_Settings {
 										</select>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2"><?php echo "<h2>" . __( "Page Scrolling Depth Variables", 'google-analytics-dashboard-for-wp' ) . "</h2>"; ?></td>
-								</tr>
-								<tr>
-									<td colspan="2" class="gadwp-settings-title">
-										<div class="button-primary gadwp-settings-switchoo">
-											<input type="checkbox" name="options[tm_pagescrolldepth_tracking]" value="1" class="gadwp-settings-switchoo-checkbox" id="tm_pagescrolldepth_tracking" <?php checked( $options['tm_pagescrolldepth_tracking'], 1 ); ?>>
-											<label class="gadwp-settings-switchoo-label" for="tm_pagescrolldepth_tracking">
-												<div class="gadwp-settings-switchoo-inner"></div>
-												<div class="gadwp-settings-switchoo-switch"></div>
-											</label>
-										</div>
-										<div class="switch-desc"><?php echo " ".__("enable page scrolling depth variables: ", 'google-analytics-dashboard-for-wp' ) . "<strong>{{event}} = ScrollDistance, {{eventCategory}}, {{eventAction}}, {{eventLabel}}, {{eventValue}}, {{eventNonInteraction}}</strong>"?></div>
-									</td>
-								</tr>
 							</table>
 						</div>
 						<div id="gadwp-advanced">
@@ -834,7 +834,7 @@ final class GADWP_Settings {
 								<tr>
 									<td colspan="2" class="gadwp-settings-title">
 										<div class="button-primary gadwp-settings-switchoo">
-											<input type="checkbox" name="options[ga_force_ssl]" value="1" class="gadwp-settings-switchoo-checkbox" id="ga_force_ssl" <?php checked( $options['ga_force_ssl'], 1 ); ?>>
+											<input type="checkbox" name="options[ga_force_ssl]" value="1" class="gadwp-settings-switchoo-checkbox" id="ga_force_ssl" <?php checked( $options['ga_force_ssl'] || $options['ga_with_gtag'], 1 ); ?>  <?php disabled( $options['ga_with_gtag'], true );?>>
 											<label class="gadwp-settings-switchoo-label" for="ga_force_ssl">
 												<div class="gadwp-settings-switchoo-inner"></div>
 												<div class="gadwp-settings-switchoo-switch"></div>
@@ -920,7 +920,7 @@ final class GADWP_Settings {
 								<tr>
 									<td colspan="2" class="gadwp-settings-title">
 										<div class="button-primary gadwp-settings-switchoo">
-											<input type="checkbox" name="options[amp_tracking_clientidapi]" value="1" class="gadwp-settings-switchoo-checkbox" id="amp_tracking_clientidapi" <?php checked( $options['amp_tracking_clientidapi'], 1 ); ?>>
+											<input type="checkbox" name="options[amp_tracking_clientidapi]" value="1" class="gadwp-settings-switchoo-checkbox" id="amp_tracking_clientidapi" <?php checked( $options['amp_tracking_clientidapi'] && !$options['ga_with_gtag'], 1 ); ?> <?php disabled( $options['ga_with_gtag'], true );?>>
 											<label class="gadwp-settings-switchoo-label" for="amp_tracking_clientidapi">
 												<div class="gadwp-settings-switchoo-inner"></div>
 												<div class="gadwp-settings-switchoo-switch"></div>
@@ -938,10 +938,10 @@ final class GADWP_Settings {
 										</label>
 									</td>
 									<td>
-										<select id="ecommerce_mode" name="options[ecommerce_mode]">
+										<select id="ecommerce_mode" name="options[ecommerce_mode]" <?php disabled( $options['ga_with_gtag'], true );?>>
 											<option value="disabled" <?php selected( $options['ecommerce_mode'], 'disabled' ); ?>><?php _e("Disabled", 'google-analytics-dashboard-for-wp');?></option>
 											<option value="standard" <?php selected( $options['ecommerce_mode'], 'standard' ); ?>><?php _e("Ecommerce Plugin", 'google-analytics-dashboard-for-wp');?></option>
-											<option value="enhanced" <?php selected( $options['ecommerce_mode'], 'enhanced' ); ?>><?php _e("Enhanced Ecommerce Plugin", 'google-analytics-dashboard-for-wp');?></option>
+											<option value="enhanced" <?php selected( $options['ecommerce_mode'], 'enhanced' ); selected( $options['ga_with_gtag'], true );?>><?php _e("Enhanced Ecommerce Plugin", 'google-analytics-dashboard-for-wp');?></option>
 										</select>
 									</td>
 								</tr>
@@ -979,6 +979,37 @@ final class GADWP_Settings {
 									</td>
 									<td>
 										<input type="text" name="options[optimize_containerid]" value="<?php echo esc_attr($options['optimize_containerid']); ?>" size="15">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="gadwp-tmadvanced">
+							<table class="gadwp-settings-options">
+								<tr>
+									<td colspan="2"><?php echo "<h2>" . __( "Advanced Tracking", 'google-analytics-dashboard-for-wp' ) . "</h2>"; ?></td>
+								</tr>
+								<tr>
+									<td colspan="2" class="gadwp-settings-title">
+										<div class="button-primary gadwp-settings-switchoo">
+											<input type="checkbox" name="options[tm_optout]" value="1" class="gadwp-settings-switchoo-checkbox" id="tm_optout" <?php checked( $options['tm_optout'], 1 ); ?>>
+											<label class="gadwp-settings-switchoo-label" for="tm_optout">
+												<div class="gadwp-settings-switchoo-inner"></div>
+												<div class="gadwp-settings-switchoo-switch"></div>
+											</label>
+										</div>
+										<div class="switch-desc"><?php echo " ".__("enable support for user opt-out", 'google-analytics-dashboard-for-wp' );?></div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" class="gadwp-settings-title">
+										<div class="button-primary gadwp-settings-switchoo">
+											<input type="checkbox" name="options[tm_dnt_optout]" value="1" class="gadwp-settings-switchoo-checkbox" id="tm_dnt_optout" <?php checked( $options['tm_dnt_optout'], 1 ); ?>>
+											<label class="gadwp-settings-switchoo-label" for="tm_dnt_optout">
+												<div class="gadwp-settings-switchoo-inner"></div>
+												<div class="gadwp-settings-switchoo-switch"></div>
+											</label>
+										</div>
+										<div class="switch-desc"> <?php _e( 'exclude tracking for users sending Do Not Track header', 'google-analytics-dashboard-for-wp' ); ?></div>
 									</td>
 								</tr>
 							</table>
@@ -1041,12 +1072,6 @@ final class GADWP_Settings {
 											<tr>
 											<?php endif; ?>
 										<?php endforeach; ?>
-
-
-
-
-
-
 										</table>
 									</td>
 								</tr>
@@ -1201,12 +1226,8 @@ final class GADWP_Settings {
 					$options = self::update_options( 'general' );
 					$message = "<div class='updated' id='gadwp-autodismiss'><p>" . __( "Plugin authorization succeeded.", 'google-analytics-dashboard-for-wp' ) . "</p></div>";
 					if ( $gadwp->config->options['token'] && $gadwp->gapi_controller->client->getAccessToken() ) {
-						if ( ! empty( $gadwp->config->options['ga_profiles_list'] ) ) {
-							$profiles = $gadwp->config->options['ga_profiles_list'];
-						} else {
-							$profiles = $gadwp->gapi_controller->refresh_profiles();
-						}
-						if ( $profiles ) {
+						$profiles = $gadwp->gapi_controller->refresh_profiles();
+						if ( is_array ( $profiles ) && ! empty( $profiles ) ) {
 							$gadwp->config->options['ga_profiles_list'] = $profiles;
 							if ( ! $gadwp->config->options['tableid_jail'] ) {
 								$profile = GADWP_Tools::guess_default_domain( $profiles );
@@ -1225,7 +1246,7 @@ final class GADWP_Settings {
 				} catch ( Exception $e ) {
 					$timeout = $gadwp->gapi_controller->get_timeouts( 'midnight' );
 					GADWP_Tools::set_error( $e, $timeout );
-					$gadwp->gapi_controller->reset_token( true );
+					$gadwp->gapi_controller->reset_token();
 				}
 			} else {
 				if ( 1 == stripos( 'x' . $_POST['gadwp_access_code'], 'UA-', 1 ) ) {
@@ -1245,7 +1266,7 @@ final class GADWP_Settings {
 		}
 		if ( isset( $_POST['Reset'] ) ) {
 			if ( isset( $_POST['gadwp_security'] ) && wp_verify_nonce( $_POST['gadwp_security'], 'gadwp_form' ) ) {
-				$gadwp->gapi_controller->reset_token( true );
+				$gadwp->gapi_controller->reset_token();
 				GADWP_Tools::clear_cache();
 				$message = "<div class='updated' id='gadwp-autodismiss'><p>" . __( "Token Reseted and Revoked.", 'google-analytics-dashboard-for-wp' ) . "</p></div>";
 				$options = self::update_options( 'Reset' );
@@ -1266,6 +1287,8 @@ final class GADWP_Settings {
 					$error_report .= $sep . print_r( GADWP_Tools::get_cache( 'gapi_errors' ), true );
 					$error_report .= $sep . GADWP_Tools::get_cache( 'errors_count' );
 					$error_report .= $sep . $info;
+
+					$error_report = urldecode( $error_report );
 
 					$url = GADWP_ENDPOINT_URL . 'gadwp-report.php';
 					/* @formatter:off */
@@ -1530,12 +1553,8 @@ final class GADWP_Settings {
 						GADWP_Tools::delete_cache( 'gapi_errors' );
 					}
 					if ( $gadwp->config->options['token'] && $gadwp->gapi_controller->client->getAccessToken() ) {
-						if ( ! empty( $gadwp->config->options['ga_profiles_list'] ) ) {
-							$profiles = $gadwp->config->options['ga_profiles_list'];
-						} else {
-							$profiles = $gadwp->gapi_controller->refresh_profiles();
-						}
-						if ( $profiles ) {
+						$profiles = $gadwp->gapi_controller->refresh_profiles();
+						if ( is_array ( $profiles ) && ! empty( $profiles ) ) {
 							$gadwp->config->options['ga_profiles_list'] = $profiles;
 							if ( isset( $gadwp->config->options['tableid_jail'] ) && ! $gadwp->config->options['tableid_jail'] ) {
 								$profile = GADWP_Tools::guess_default_domain( $profiles );
@@ -1554,7 +1573,7 @@ final class GADWP_Settings {
 				} catch ( Exception $e ) {
 					$timeout = $gadwp->gapi_controller->get_timeouts( 'midnight' );
 					GADWP_Tools::set_error( $e, $timeout );
-					$gadwp->gapi_controller->reset_token( true );
+					$gadwp->gapi_controller->reset_token();
 				}
 			} else {
 				if ( 1 == stripos( 'x' . $_POST['gadwp_access_code'], 'UA-', 1 ) ) {
@@ -1599,7 +1618,7 @@ final class GADWP_Settings {
 		}
 		if ( isset( $_POST['Reset'] ) ) {
 			if ( isset( $_POST['gadwp_security'] ) && wp_verify_nonce( $_POST['gadwp_security'], 'gadwp_form' ) ) {
-				$gadwp->gapi_controller->reset_token( true );
+				$gadwp->gapi_controller->reset_token();
 				GADWP_Tools::clear_cache();
 				$message = "<div class='updated' id='gadwp-autodismiss'><p>" . __( "Token Reseted and Revoked.", 'google-analytics-dashboard-for-wp' ) . "</p></div>";
 				$options = self::update_options( 'Reset' );
