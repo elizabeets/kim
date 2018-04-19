@@ -4,13 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class that handles Giropay payment method.
+ * Class that handles EPS payment method.
  *
  * @extends WC_Gateway_Stripe
  *
- * @since 4.0.0
+ * @since 4.1.0
  */
-class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
+class WC_Gateway_Stripe_Eps extends WC_Stripe_Payment_Gateway {
 	/**
 	 * Notices (array)
 	 * @var array
@@ -56,8 +56,8 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->id                   = 'stripe_giropay';
-		$this->method_title         = __( 'Stripe Giropay', 'woocommerce-gateway-stripe' );
+		$this->id                   = 'stripe_eps';
+		$this->method_title         = __( 'Stripe EPS', 'woocommerce-gateway-stripe' );
 		/* translators: link */
 		$this->method_description   = sprintf( __( 'All other general Stripe settings can be adjusted <a href="%s">here</a>.', 'woocommerce-gateway-stripe' ), admin_url( 'admin.php?page=wc-settings&tab=checkout&section=stripe' ) );
 		$this->supports             = array(
@@ -93,12 +93,12 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 	/**
 	 * Returns all supported currencies for this payment method.
 	 *
-	 * @since 4.0.0
-	 * @version 4.0.0
+	 * @since 4.1.0
+	 * @version 4.1.0
 	 * @return array
 	 */
 	public function get_supported_currency() {
-		return apply_filters( 'wc_stripe_giropay_supported_currencies', array(
+		return apply_filters( 'wc_stripe_eps_supported_currencies', array(
 			'EUR',
 		) );
 	}
@@ -106,8 +106,8 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 	/**
 	 * Checks to see if all criteria is met before showing payment method.
 	 *
-	 * @since 4.0.0
-	 * @version 4.0.0
+	 * @since 4.1.0
+	 * @version 4.1.0
 	 * @return bool
 	 */
 	public function is_available() {
@@ -122,7 +122,7 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 	 * Get_icon function.
 	 *
 	 * @since 1.0.0
-	 * @version 4.0.0
+	 * @version 4.1.0
 	 * @return string
 	 */
 	public function get_icon() {
@@ -130,7 +130,7 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 
 		$icons_str = '';
 
-		$icons_str .= $icons['giropay'];
+		$icons_str .= $icons['eps'];
 
 		return apply_filters( 'woocommerce_gateway_icon', $icons_str, $this->id );
 	}
@@ -155,7 +155,7 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 	 * Initialize Gateway Settings Form Fields.
 	 */
 	public function init_form_fields() {
-		$this->form_fields = require( WC_STRIPE_PLUGIN_PATH . '/includes/admin/stripe-giropay-settings.php' );
+		$this->form_fields = require( WC_STRIPE_PLUGIN_PATH . '/includes/admin/stripe-eps-settings.php' );
 	}
 
 	/**
@@ -180,7 +180,7 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 		}
 
 		echo '<div
-			id="stripe-giropay-payment-data"
+			id="stripe-eps-payment-data"
 			data-amount="' . esc_attr( WC_Stripe_Helper::get_stripe_amount( $total ) ) . '"
 			data-currency="' . esc_attr( strtolower( get_woocommerce_currency() ) ) . '">';
 
@@ -194,8 +194,8 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 	/**
 	 * Creates the source for charge.
 	 *
-	 * @since 4.0.0
-	 * @version 4.0.0
+	 * @since 4.1.0
+	 * @version 4.1.0
 	 * @param object $order
 	 * @return mixed
 	 */
@@ -206,7 +206,7 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 		$post_data             = array();
 		$post_data['amount']   = WC_Stripe_Helper::get_stripe_amount( $order->get_total(), $currency );
 		$post_data['currency'] = strtolower( $currency );
-		$post_data['type']     = 'giropay';
+		$post_data['type']     = 'eps';
 		$post_data['owner']    = $this->get_owner_details( $order );
 		$post_data['redirect'] = array( 'return_url' => $return_url );
 
@@ -214,9 +214,9 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 			$post_data['statement_descriptor'] = WC_Stripe_Helper::clean_statement_descriptor( $this->statement_descriptor );
 		}
 
-		WC_Stripe_Logger::log( 'Info: Begin creating Giropay source' );
+		WC_Stripe_Logger::log( 'Info: Begin creating EPS source' );
 
-		return WC_Stripe_API::request( apply_filters( 'wc_stripe_giropay_source', $post_data, $order ), 'sources' );
+		return WC_Stripe_API::request( $post_data, 'sources' );
 	}
 
 	/**
@@ -251,7 +251,7 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 			if ( ! empty( $response->error ) ) {
 				$order->add_order_note( $response->error->message );
 
-				throw new WC_Stripe_Exception( print_r( $response, true ), $response->error->message );
+				throw new Exception( $response->error->message );
 			}
 
 			if ( WC_Stripe_Helper::is_pre_30() ) {
@@ -261,14 +261,14 @@ class WC_Gateway_Stripe_Giropay extends WC_Stripe_Payment_Gateway {
 				$order->save();
 			}
 
-			WC_Stripe_Logger::log( 'Info: Redirecting to Giropay...' );
+			WC_Stripe_Logger::log( 'Info: Redirecting to EPS...' );
 
 			return array(
 				'result'   => 'success',
 				'redirect' => esc_url_raw( $response->redirect->url ),
 			);
-		} catch ( WC_Stripe_Exception $e ) {
-			wc_add_notice( $e->getLocalizedMessage(), 'error' );
+		} catch ( Exception $e ) {
+			wc_add_notice( $e->getMessage(), 'error' );
 			WC_Stripe_Logger::log( 'Error: ' . $e->getMessage() );
 
 			do_action( 'wc_gateway_stripe_process_payment_error', $e, $order );
