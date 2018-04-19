@@ -21,6 +21,10 @@
 //delete_option('berocket_admin_notices'); //remove all notice information
 //delete_option('berocket_last_close_notices_time'); //remove wait time before next notice
 if( ! class_exists( 'berocket_admin_notices' ) ) {
+    /**
+     * Class berocket_admin_notices
+     */
+
     class berocket_admin_notices {
         public $find_names, $notice_exist = false;
         public static $last_time = '-24 hours';
@@ -30,24 +34,24 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
         public static $styles_exist = false;
         public static $notice_index = 0;
         public static $default_notice_options = array(
-            'start'         => 0,
-            'end'           => 0,
-            'name'          => 'sale',
-            'html'          => '',
-            'righthtml'     => '<a class="berocket_no_thanks">No thanks</a>',
-            'rightwidth'    => 80,
-            'nothankswidth' => 60,
-            'contentwidth'  => 400,
-            'subscribe'     => false,
-            'closed'        => '0',
-            'priority'      => 20,
-            'height'        => 50,
-            'repeat'        => false,
-            'repeatcount'   => 1,
-            'image'         => array(
-                'global'    => 'http://berocket.com/images/logo-2.png'
-            ),
-        );
+                'start'         => 0,
+                'end'           => 0,
+                'name'          => 'sale',
+                'html'          => '',
+                'righthtml'     => '<a class="berocket_no_thanks">No thanks</a>',
+                'rightwidth'    => 80,
+                'nothankswidth' => 60,
+                'contentwidth'  => 400,
+                'subscribe'     => false,
+                'closed'        => '0',
+                'priority'      => 20,
+                'height'        => 50,
+                'repeat'        => false,
+                'repeatcount'   => 1,
+                'image'         => array(
+                    'global'    => 'http://berocket.com/images/logo-2.png'
+                ),
+            );
         function __construct($options = array()) {
             if( ! is_admin() ) return;
             $options = array_merge(self::$default_notice_options, $options);
@@ -173,14 +177,15 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                             file_put_contents($img_local, file_get_contents($url_global));
                         }
                         if( file_exists($img_local) ) {
-                            $file_exist = true;
                             $options['image']['local'] = $url_local;
                             $options['image']['pathlocal'] = $img_local;
                         } else {
                             $options['image']['local'] = $url_global;
+                            $file_exist = true;
                         }
                     }
-                } else {
+                }
+                if( ! $file_exist ) {
                     if( ! empty($options['image']['local']) ) {
                         $img_local = $options['image']['local'];
                         $img_local = str_replace(site_url('/'), '', $img_local);
@@ -284,7 +289,7 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                         $notice = self::get_not_closed_notice($item, $end_soon, $closed, $count - 1);
                     }
                 } else {
-                    if( $item['closed'] <= $closed && ( ! self::$subscribed || ! $item['subscribe'] ) ) {
+                    if( $item['closed'] <= $closed && ( ! self::$subscribed || ! $item['subscribe'] ) && ($item['start'] == 0 || $item['start'] < $time) && ($item['end'] == 0 || $item['end'] > $time) ) {
                         return $item;
                     }
                 }
@@ -307,13 +312,12 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                     $notices = array_merge($notices, $notice);
                 } else {
                     if( ! self::$subscribed || ! $item['subscribe'] ) {
-                        if( $item['priority'] < 5 || ! $item['closed'] ) {
+                        if( $item['priority'] <= 5 || ! $item['closed'] ) {
                             $notices[] = $item;
                         }
                     }
                 }
             }
-
             return $notices;
         }
         public static function display_admin_notice() {
@@ -326,9 +330,9 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
             if( ! empty($notice['original']) ) {
                 $original_notice = self::get_notice_by_path($notice['original']);
                 unset($original_notice['start'], $original_notice['closed'], $original_notice['repeatcount']);
-                $notice = $original_notice;
+                $notice = array_merge($notice, $original_notice);
             }
-
+            
             if( $notice !== false ) {
                 self::echo_notice($notice);
             }
@@ -336,13 +340,13 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
             if( is_array($additional_notice) && count($additional_notice) > 0 ) {
                 foreach($additional_notice as $notice) {
                     if( is_array($notice) ) {
-                        $notice = array_merge(self::$default_notice_options, $notice);
                         self::echo_notice($notice);
                     }
                 }
             }
         }
         public static function echo_notice($notice) {
+            $notice = array_merge(self::$default_notice_options, $notice);
             $settings_page = apply_filters('is_berocket_settings_page', false);
             self::$notice_index++;
             $notice_data = array(
@@ -365,7 +369,7 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                     $time  = $time%60;
                     $time_left_str .= sprintf("%02d", $minutes) . ":";
                 }
-
+                
                 $time_left_str .= sprintf("%02d", $time);
                 $notice['rightwidth'] += 60;
                 $notice['righthtml'] .= '<div class="berocket_time_left_block">Left<br><span class="berocket_time_left" data-time="' . $time_left . '">' . $time_left_str . '</span></div>';
@@ -377,8 +381,8 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                 } else {
                     $user_email = '';
                 }
-                $notice['righthtml'] =
-                    '<form class="berocket_subscribe_form" method="POST" action="' . admin_url( 'admin-ajax.php' ) . '">
+                $notice['righthtml'] = 
+                '<form class="berocket_subscribe_form" method="POST" action="' . admin_url( 'admin-ajax.php' ) . '">
                     <input type="hidden" name="action" value="berocket_subscribe_email">
                     <input class="berocket_subscribe_email" type="email" name="email" value="' . $user_email . '">
                     <input type="submit" class="button-primary button berocket_notice_submit" value="Subscribe">
@@ -387,13 +391,13 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
             }
             echo '
                 <div class="notice berocket_admin_notice berocket_admin_notice_', self::$notice_index, '" data-notice=\'', json_encode($notice_data), '\'>',
-            ( empty($notice['image']['local']) ? '' : '<img class="berocket_notice_img" src="' . $notice['image']['local'] . '">' ),
-            ( empty($notice['righthtml']) ? '' :
-                '<div class="berocket_notice_right_content">
+                    ( empty($notice['image']['local']) ? '' : '<img class="berocket_notice_img" src="' . $notice['image']['local'] . '">' ),
+                    ( empty($notice['righthtml']) ? '' :
+                    '<div class="berocket_notice_right_content">
                         <div class="berocket_notice_content">' . $notice['righthtml'] . '</div>
                         <div class="berocket_notice_after_content"></div>
                     </div>' ),
-            '<div class="berocket_notice_content_wrap">
+                    '<div class="berocket_notice_content_wrap">
                         <div class="berocket_notice_content">', $notice['html'], '</div>
                         <div class="berocket_notice_after_content"></div>
                     </div></div>';
@@ -428,20 +432,20 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                     text-align: center;
                 }
                 .berocket_admin_notice.berocket_admin_notice_', self::$notice_index, ' .berocket_notice_right_content {',
-            ( $notice['rightwidth'] <= 20 ? ' display: none' :
-                'height: ' . $notice['height'] . 'px;
+                    ( $notice['rightwidth'] <= 20 ? ' display: none' :
+                    'height: ' . $notice['height'] . 'px;
                     float: right;
                     width: ' . $notice['rightwidth'] . 'px;
                     -webkit-box-shadow: box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.1);
                     box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.1);
                     padding-left: 10px;' ),
-            '}
+                '}
                 .berocket_admin_notice.berocket_admin_notice_', self::$notice_index, ' .berocket_no_thanks {',
-            ( $settings_page && $notice['priority'] <= 5 ? 'display: none!important;' : 'cursor: pointer;
+                    ( $settings_page && $notice['priority'] <= 5 ? 'display: none!important;' : 'cursor: pointer;
                     color: #0073aa;
                     opacity: 0.5;
                     display: inline-block;' ),
-            '}
+                '}
                 ', ( empty($notice['subscribe']) ? '' : '
                 .berocket_admin_notice.berocket_admin_notice_' . self::$notice_index . ' .berocket_subscribe_form {
                     display: inline-block;
@@ -685,16 +689,23 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                         event.preventDefault();
                         jQuery(this).parents(".berocket_subscribe_form").trigger("berocket_subscribe_send");
                     });
-
+                    
                 </script>';
             }
         }
         public static function close_notice($notice = FALSE) {
             self::$subscribed = get_option('berocket_email_subscribed');
             if( ( $notice == FALSE || ! is_array($notice) ) && ! empty($_POST['notice']) ) {
-                $notice = $_POST['notice'];
+                $notice = sanitize_textarea_field($_POST['notice']);
             }
-            if( $notice == FALSE || ! is_array($notice) ) {
+            if (empty($notice) || ! is_array($notice)
+            || (empty($notice['start']) && $notice['start'] !== '0')
+            || (empty($notice['end']) && $notice['end'] !== '0')
+            || (empty($notice['priority']) && $notice['priority'] !== '0')
+            || (empty($notice['name'])) ) {
+                $notice = self::get_notice();
+            }
+            if( empty($notice) || ! is_array($notice) ) {
                 wp_die();
             }
             $find_names = array($notice['priority'], $notice['end'], $notice['start'], $notice['name']);
@@ -725,7 +736,7 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                 if( $ch = curl_init() ) {
                     $plugins = array();
                     if( ! empty($_POST['plugin']) ) {
-                        $plugins[] = $_POST['plugin'];
+                        $plugins[] = sanitize_textarea_field($_POST['plugin']);
                     }
                     $plugins = apply_filters('berocket_admin_notices_subscribe_plugins', $plugins);
                     $plugins = array_unique($plugins);
@@ -733,7 +744,7 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
                     update_option('berocket_email_subscribed', true);
                     curl_setopt($ch, CURLOPT_URL,"http://berocket.com/main/subscribe");
                     curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, "email=" . $_POST['email'] . "&plugins=" . $plugins);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, "email=" . sanitize_email($_POST['email']) . "&plugins=" . $plugins);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                     echo curl_exec ($ch);
                     curl_close ($ch);
@@ -758,30 +769,4 @@ if( ! class_exists( 'berocket_admin_notices' ) ) {
     add_action( 'wp_ajax_berocket_admin_close_notice', array('berocket_admin_notices', 'close_notice') );
     add_action( 'wp_ajax_berocket_subscribe_email', array('berocket_admin_notices', 'subscribe') );
 }
-
-/**
- * Creating admin notice if it not added already
- */
-new berocket_admin_notices(array(
-    'start' => 1511281980, // timestamp when notice start
-    'end'   => 1514764803, // timestamp when notice end
-    'name'  => 'SALE_LOAD_MORE2', //notice name must be unique for this time period
-    'html'  => 'Only <strong>$10</strong> for <strong>Premium</strong> WooCommerce Load More Products!
-            <a class="berocket_button" href="http://berocket.com/product/woocommerce-load-more-products" target="_blank">Buy Now</a>
-             &nbsp; <span>Get your <strong class="red">60% discount</strong> and save <strong>$15</strong> today</span>
-            ', //text or html code as content of notice
-    'righthtml'  => '<a class="berocket_no_thanks">No thanks</a>', //content in the right block, this is default value. This html code must be added to all notices
-    'rightwidth'  => 80, //width of right content is static and will be as this value. berocket_no_thanks block is 60px and 20px is additional
-    'nothankswidth'  => 60, //berocket_no_thanks width. set to 0 if block doesn't uses. Or set to any other value if uses other text inside berocket_no_thanks
-    'contentwidth'  => 910, //width that uses for mediaquery is image + contentwidth + rightwidth + 210 other elements
-    'subscribe'  => false, //add subscribe form to the righthtml
-    'priority'  => 7, //priority of notice. 1-5 is main priority and displays on settings page always
-    'height'  => 50, //height of notice. image will be scaled
-    'repeat'  => '+1 week', //repeat notice after some time. time can use any values that accept function strtotime
-    'repeatcount'  => 4, //repeat count. how many times notice will be displayed after close
-    'image'  => array(
-        'local' => plugin_dir_url( __FILE__ ) . '../images/60p_sale.jpg', //notice will be used this image directly
-    ),
-));
-
 ?>
