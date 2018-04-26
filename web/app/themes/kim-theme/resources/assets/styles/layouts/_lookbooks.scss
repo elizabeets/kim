@@ -1,0 +1,72 @@
+body.single-lookbook,
+body.post-type-archive-lookbook {
+  .wrap {
+    margin: {
+      top: 7rem;
+    }
+  }
+}
+
+body.post-type-archive-lookbook {
+  .post-feed {
+    article.post {
+      z-index: 99;
+      position: relative;
+      margin: {
+        bottom: 1.5rem;
+      }
+
+      a.post-link {
+        .post-thumb {
+          img {
+            // smth
+          }
+        }
+
+        .post-meta {
+          @extend .ease-effect;
+
+          opacity: 0;
+          z-index: 100;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: {
+            color: transparentize($black, 0.5);
+          }
+
+          .post-title {
+            transform: translateY(50%);
+            margin-top: -50px;
+            height: 100%;
+            text: {
+              align: center;
+            }
+
+            h2 {
+              color: $white;
+              margin: 0;
+              font: {
+                size: 3vmax;
+              }
+            }
+          }
+        }
+      }
+
+      &.featured {
+        // smth
+      }
+
+      &:hover {
+        a.post-link {
+          .post-meta {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

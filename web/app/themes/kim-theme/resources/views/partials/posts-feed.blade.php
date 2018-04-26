@@ -27,7 +27,7 @@
           @endif
 
           <div class="post-meta">
-            <div class="post-title">
+            <div class="post-title align-self-center">
               @if(is_front_page() && $i == 1)
                 <h1>{{ get_the_title() }}</h1>
               @else

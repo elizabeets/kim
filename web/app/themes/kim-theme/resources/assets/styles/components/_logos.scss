@@ -1,0 +1,25 @@
+section.logos {
+  padding: {
+    top: 2rem;
+    bottom: 2rem;
+  }
+
+  .logo {
+    @extend .ease-effect;
+
+    a {
+      img {
+        width: auto;
+        height: auto;
+        max: {
+          width: 80%;
+          height: 150px;
+        }
+      }
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

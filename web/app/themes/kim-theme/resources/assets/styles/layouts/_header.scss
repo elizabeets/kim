@@ -21,26 +21,39 @@ header.banner {
         z-index: 999;
         display: none;
         position: absolute;
+        width: auto;
+        height: auto;
         top: 55px;
         bottom: 0;
-        left: 0;
-        right: 0;
-        height: 80px;
+        left: 40px;
+        right: auto;
         background: {
           color: $brand-primary;
         }
         text: {
           align: left;
         }
+        min: {
+          height: 150px;
+          width: 240px;
+        }
 
         li {
-          display: inline-block;
+          height: 40px;
           text: {
             align: left;
           }
 
           a {
+            @extend .ease-effect;
+
             color: $white;
+          }
+
+          &:hover {
+            a {
+              opacity: 0.7;
+            }
           }
         }
       }
@@ -67,8 +80,9 @@ header.banner {
         }
       }
 
-      &.current-menu-item {
-        a {
+      &.current-menu-item,
+      &.current-menu-ancestor {
+        > a {
           font: {
             weight: bold;
           }

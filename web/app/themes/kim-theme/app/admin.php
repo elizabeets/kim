@@ -2,6 +2,9 @@
 
 namespace App;
 
+use PostTypes\PostType;
+use PostTypes\Taxonomy;
+
 /**
  * Theme customizer
  */
@@ -35,3 +38,25 @@ add_action( 'customize_preview_init',
         global $template;
         print_r( $template );
     } );*/
+
+/**
+ * Add Custom Post Type: Lookbook
+ */
+$lookbooks = new PostType( [
+    'name'     => 'lookbook',
+    'singular' => 'Lookbook',
+    'plural'   => 'Lookbooks',
+    'slug'     => 'lookbooks',
+], [
+    'public'       => true,
+    'has_archive'  => true,
+    'hierarchical' => true,
+    'supports'     => [
+        'title',
+        'editor',
+        'thumbnail',
+        'page-attributes',
+    ],
+] );
+//$lookbooks->icon( 'dashicons-cart' );
+$lookbooks->register();
