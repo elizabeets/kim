@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "aefb75b95ff37996eac7d0dbfd82fb7a",
@@ -684,16 +684,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.26.4",
+            "version": "1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "e3d9014279133a3cccc01f6a691322a2d5a6a87b"
+                "reference": "ef81c39b67200dcd7401c24363dcac05ac3a4fe9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e3d9014279133a3cccc01f6a691322a2d5a6a87b",
-                "reference": "e3d9014279133a3cccc01f6a691322a2d5a6a87b",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ef81c39b67200dcd7401c24363dcac05ac3a4fe9",
+                "reference": "ef81c39b67200dcd7401c24363dcac05ac3a4fe9",
                 "shasum": ""
             },
             "require": {
@@ -728,7 +728,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-04-17T15:35:42+00:00"
+            "time": "2018-04-23T09:02:57+00:00"
         },
         {
             "name": "psr/container",
@@ -876,22 +876,22 @@
         },
         {
             "name": "roots/sage-lib",
-            "version": "9.0.0-beta.4",
+            "version": "9.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/sage-lib.git",
-                "reference": "71ed6e54e831fd1ced5bae028f0515d277e8c1c1"
+                "reference": "36573cd93b8109633c953e3f05b9f7d654bad885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/sage-lib/zipball/71ed6e54e831fd1ced5bae028f0515d277e8c1c1",
-                "reference": "71ed6e54e831fd1ced5bae028f0515d277e8c1c1",
+                "url": "https://api.github.com/repos/roots/sage-lib/zipball/36573cd93b8109633c953e3f05b9f7d654bad885",
+                "reference": "36573cd93b8109633c953e3f05b9f7d654bad885",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0",
-                "illuminate/config": "~5.4",
-                "illuminate/view": "~5.4",
+                "illuminate/config": "~5.6",
+                "illuminate/view": "~5.6",
                 "php": ">=7"
             },
             "require-dev": {
@@ -924,7 +924,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2017-08-11T23:38:23+00:00"
+            "time": "2018-04-25T17:24:31+00:00"
         },
         {
             "name": "soberwp/controller",
@@ -1322,21 +1322,21 @@
         },
         {
             "name": "roots/sage-installer",
-            "version": "1.3.4",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/sage-installer.git",
-                "reference": "5966e0ea56b46f50f183f7ad0e526ddf065265fb"
+                "reference": "e811ab937a36b321ea88ec6000ab3d5019b8f2b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/sage-installer/zipball/5966e0ea56b46f50f183f7ad0e526ddf065265fb",
-                "reference": "5966e0ea56b46f50f183f7ad0e526ddf065265fb",
+                "url": "https://api.github.com/repos/roots/sage-installer/zipball/e811ab937a36b321ea88ec6000ab3d5019b8f2b1",
+                "reference": "e811ab937a36b321ea88ec6000ab3d5019b8f2b1",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "~5.4",
-                "illuminate/filesystem": "~5.4",
+                "illuminate/console": "~5.6",
+                "illuminate/filesystem": "~5.6",
                 "symfony/process": "~3.3"
             },
             "require-dev": {
@@ -1369,7 +1369,6 @@
             ],
             "description": "Sage starter theme installer",
             "keywords": [
-                "FontAwesome",
                 "bootstrap",
                 "foundation",
                 "sage",
@@ -1377,7 +1376,7 @@
                 "theme",
                 "wordpress"
             ],
-            "time": "2018-04-13T01:32:58+00:00"
+            "time": "2018-04-25T17:45:56+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
