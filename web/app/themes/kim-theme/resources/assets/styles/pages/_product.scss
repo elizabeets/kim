@@ -46,6 +46,37 @@ body.woocommerce {
       display: none;
     }
 
+    .wpcf7-form {
+      &.sent {
+        .form {
+          display: none !important;
+        }
+
+        .success-message {
+          display: block;
+        }
+      }
+
+      .form {
+        div[class^="col-"] {
+          .wpcf7-not-valid-tip {
+            top: 10px;
+            right: 30px;
+          }
+        }
+      }
+
+      .success-message {
+        display: none;
+      }
+
+      .wpcf7-validation-errors,
+      .ajax-loader,
+      .wpcf7-mail-sent-ok {
+        display: none !important;
+      }
+    }
+
     .related.products {
       clear: both;
       margin: {
